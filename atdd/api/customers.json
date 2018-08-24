@@ -6,12 +6,12 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:3000/api/v1/customers",
+			"name": "create new company",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "6b283577-d956-4ad9-a0cc-bfed6db49a00",
+						"id": "f9add910-00a5-4218-97e9-ed2dd8ff9f34",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {",
@@ -24,10 +24,10 @@
 							"});",
 							"",
 							"pm.test(\"costomer should be บริษัท ที.เอ็น. อินคอร์ปอเรชั่น จำกัด\", function () {",
-							"    pm.expect(customerData.company).to.eql(\"บริษัท ที.เอ็น. อินคอร์ปอเรชั่นจำกัด\");",
+							"    pm.expect(customerData.company).to.eql(\"บริษัท ที.เอ็น. อินคอร์ปอเรชั่น จำกัด\");",
 							"    pm.expect(customerData.branch).to.eql(\"สำนักงานใหญ่\");",
 							"    pm.expect(customerData.address).to.eql(\"3 อาคารรัจนาการ ถนนสาทรใต้ แขวงยานนาวา เขตสาทร กรุงเทพมหานคร 10120\");",
-							"    pm.expect(customerData.taxID).to.eql(\"0105553108372\");",
+							"    pm.expect(customerData.taxid).to.eql(\"0105553108372\");",
 							"});"
 						]
 					}
@@ -62,35 +62,35 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/api/v1/customers Copy",
+			"name": "list companys",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "6773aaaa-59cc-4c04-ae8b-69f2670cd9a1",
+						"id": "e5c743e6-bc1e-4415-a40e-ac76a3e76411",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
 							"});",
 							"var customerData = pm.response.json();",
 							"",
 							"pm.test(\"costomer id should be defined\", function () {",
-							"    pm.expect(customerData.id).to.exist;",
+							"    pm.expect(customerData.length > 0).to.eql(true);",
 							"});",
 							"",
-							"pm.test(\"costomer should be บริษัท เอ็กซอนโมบิล จำกัด\", function () {",
-							"    pm.expect(customerData.company).to.eql(\"บริษัท เอ็กซอนโมบิล จำกัด\");",
-							"    pm.expect(customerData.branch).to.eql(\"สำนักงานใหญ่\");",
-							"    pm.expect(customerData.address).to.eql(\"เลขที่ 3195/17-29 ถนนพระราม 4 แขวงคองตัน เขตตลองเตย จังหวัดกรุงเทพมหานคร 10110\");",
-							"    pm.expect(customerData.taxID).to.eql(\"0105545087302\");",
+							"pm.test(\"costomer should be บริษัท ที.เอ็น. อินคอร์ปอเรชั่น จำกัด\", function () {",
+							"    pm.expect(customerData[0].company).to.eql(\"บริษัท ที.เอ็น. อินคอร์ปอเรชั่น จำกัด\");",
+							"    pm.expect(customerData[0].branch).to.eql(\"สำนักงานใหญ่\");",
+							"    pm.expect(customerData[0].address).to.eql(\"3 อาคารรัจนาการ ถนนสาทรใต้ แขวงยานนาวา เขตสาทร กรุงเทพมหานคร 10120\");",
+							"    pm.expect(customerData[0].taxid).to.eql(\"0105553108372\");",
 							"});"
 						]
 					}
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
