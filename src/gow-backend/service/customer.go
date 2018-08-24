@@ -27,3 +27,7 @@ func (customerService CustomerServiceMySQL) CreateNewCustomer(newCustomer model.
 	return createdCustomer, nil
 
 }
+func (customerService CustomerServiceMySQL) ListCustomers() ([]model.CustomerInfo, error) {
+
+	return customerService.CustomerRepository.GetAll()
+}

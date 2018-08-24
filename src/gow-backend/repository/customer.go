@@ -11,6 +11,7 @@ import (
 type CustomerRepository interface {
 	Insert(model.NewCustomer) (bool, error)
 	GetByTaxID(string) (model.CustomerInfo, error)
+	GetAll() ([]model.CustomerInfo, error)
 }
 type CustomerRepositoryMySQL struct {
 	ConnetionDB *sql.DB
@@ -46,5 +47,28 @@ func (repository CustomerRepositoryMySQL) GetByTaxID(customerTaxID string) (mode
 	if err != nil {
 		return model.CustomerInfo{}, err
 	}
+	return customerInfo, nil
+}
+func (repository CustomerRepositoryMySQL) GetAll() ([]model.CustomerInfo, error) {
+	var customerInfo []model.CustomerInfo
+	statementQuery := `SELECT * FROM customer `
+	rows, err := repository.ConnetionDB.Query(statementQuery)
+	if err != nil {
+		return customerInfo, err
+	}
+	for rows.Next() {
+		var customer model.CustomerInfo
+		rows.Scan(
+			&customer.ID,
+			&customer.Company,
+			&customer.Branch,
+			&customer.Address,
+			&customer.TaxID,
+			&customer.CreatedTime,
+			&customer.UpdatedTime,
+		)
+		customerInfo = append(customerInfo, customer)
+	}
+
 	return customerInfo, nil
 }
