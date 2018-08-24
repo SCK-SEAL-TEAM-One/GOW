@@ -5,17 +5,17 @@ import (
 )
 
 type NewCustomer struct {
-	Company string
-	Branch  string
-	Address string
-	TaxID   string
+	Company string `json:"company"`
+	Branch  string `json:"branch"`
+	Address string `json:"address"`
+	TaxID   string `json:"taxid"`
 }
 type CustomerInfo struct {
 	ID          int       `json:"id"`
 	Company     string    `json:"company"`
-	Branch      string    `json:"beanch"`
+	Branch      string    `json:"branch"`
 	Address     string    `json:"address"`
-	TaxID       string    `json:"taxID"`
+	TaxID       string    `json:"taxid"`
 	CreatedTime time.Time `json:"createdTime"`
 	UpdatedTime time.Time `json:"updatedTime"`
 }
