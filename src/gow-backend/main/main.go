@@ -2,38 +2,18 @@ package main
 
 import (
 	"database/sql"
-	"encoding/json"
 	"fmt"
 	apiLibrary "gow-backend/api"
+	configLibrary "gow-backend/config"
 	"gow-backend/repository"
 	"gow-backend/route"
 	"gow-backend/service"
-	"io/ioutil"
-	"os"
 )
 
-type Config struct {
-	Mysql string `json:"mysql"`
-	Port  string `json:"port"`
-}
-
 func main() {
-	var config Config
-	environment := "development"
-	if os.Getenv("ENV") != "" {
-		environment = os.Getenv("ENV")
-	}
-
-	configFile, err := ioutil.ReadFile(fmt.Sprintf("./configs/%s.json", environment))
+	config, err := configLibrary.SetupConfig()
 	if err != nil {
-		fmt.Printf("cannot read config file %s", err)
-		return
-	}
-
-	err = json.Unmarshal(configFile, &config)
-	if err != nil {
-		fmt.Printf("cannot Unmarshal config %s", err)
-		return
+		panic(err.Error())
 	}
 
 	db, err := sql.Open("mysql", fmt.Sprintf("%s?parseTime=true", config.Mysql))
