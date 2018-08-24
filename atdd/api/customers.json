@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "966ea242-9038-46e3-b468-b2b9a0e401b1",
+		"name": "gow-backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/v1/customers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b283577-d956-4ad9-a0cc-bfed6db49a00",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"var customerData = pm.response.json();",
+							"",
+							"pm.test(\"costomer id should be defined\", function () {",
+							"    pm.expect(customerData.id).to.exist;",
+							"});",
+							"",
+							"pm.test(\"costomer should be บริษัท ที.เอ็น. อินคอร์ปอเรชั่น จำกัด\", function () {",
+							"    pm.expect(customerData.company).to.eql(\"บริษัท ที.เอ็น. อินคอร์ปอเรชั่นจำกัด\");",
+							"    pm.expect(customerData.branch).to.eql(\"สำนักงานใหญ่\");",
+							"    pm.expect(customerData.address).to.eql(\"3 อาคารรัจนาการ ถนนสาทรใต้ แขวงยานนาวา เขตสาทร กรุงเทพมหานคร 10120\");",
+							"    pm.expect(customerData.taxID).to.eql(\"0105553108372\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"company\":\"บริษัท ที.เอ็น. อินคอร์ปอเรชั่น จำกัด\",\n\t\"branch\":\"สำนักงานใหญ่\",\n\t\"address\":\"3 อาคารรัจนาการ ถนนสาทรใต้ แขวงยานนาวา เขตสาทร กรุงเทพมหานคร 10120\",\n\t\"taxID\":\"0105553108372\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/customers Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6773aaaa-59cc-4c04-ae8b-69f2670cd9a1",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"var customerData = pm.response.json();",
+							"",
+							"pm.test(\"costomer id should be defined\", function () {",
+							"    pm.expect(customerData.id).to.exist;",
+							"});",
+							"",
+							"pm.test(\"costomer should be บริษัท เอ็กซอนโมบิล จำกัด\", function () {",
+							"    pm.expect(customerData.company).to.eql(\"บริษัท เอ็กซอนโมบิล จำกัด\");",
+							"    pm.expect(customerData.branch).to.eql(\"สำนักงานใหญ่\");",
+							"    pm.expect(customerData.address).to.eql(\"เลขที่ 3195/17-29 ถนนพระราม 4 แขวงคองตัน เขตตลองเตย จังหวัดกรุงเทพมหานคร 10110\");",
+							"    pm.expect(customerData.taxID).to.eql(\"0105545087302\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"company\":\"บริษัท เอ็กซอนโมบิล จำกัด\",\n\t\"branch\":\"สำนักงานใหญ่\",\n\t\"address\":\"เลขที่ 3195/17-29 ถนนพระราม 4 แขวงคองตัน เขตตลองเตย จังหวัดกรุงเทพมหานคร 10110\",\n\t\"taxID\":\"0105545087302\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
