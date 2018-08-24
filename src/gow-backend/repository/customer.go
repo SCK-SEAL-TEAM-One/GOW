@@ -30,12 +30,21 @@ func (repository CustomerRepositoryMySQL) Insert(newCustomer model.NewCustomer) 
 	}
 	return true, nil
 }
-func (repository CustomerRepositoryMySQL) GetByTaxID(string) (model.CustomerInfo, error) {
-	return model.CustomerInfo{
-		ID:      1,
-		Company: "บริษัท ที.เอ็น. อินคอร์ปอเรชั่นจำกัด",
-		Branch:  "สำนักงานใหญ่",
-		Address: "3 อาคารรัจนาการ ถนนสาทรใต้ แขวงยานนาวา เขตสาทร กรุงเทพมหานคร 10120",
-		TaxID:   "0105553108372",
-	}, nil
+func (repository CustomerRepositoryMySQL) GetByTaxID(customerTaxID string) (model.CustomerInfo, error) {
+	var customerInfo model.CustomerInfo
+	statementQuery := `SELECT * FROM customer WHERE customer_taxid=?`
+	row := repository.ConnetionDB.QueryRow(statementQuery, customerTaxID)
+	err := row.Scan(
+		&customerInfo.ID,
+		&customerInfo.Company,
+		&customerInfo.Branch,
+		&customerInfo.Address,
+		&customerInfo.TaxID,
+		&customerInfo.CreatedTime,
+		&customerInfo.UpdatedTime,
+	)
+	if err != nil {
+		return model.CustomerInfo{}, err
+	}
+	return customerInfo, nil
 }
