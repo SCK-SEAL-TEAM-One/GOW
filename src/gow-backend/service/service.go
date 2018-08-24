@@ -6,5 +6,5 @@ import (
 
 type CustomerService interface {
 	CreateNewCustomer(model.NewCustomer) (model.CustomerInfo, error)
-	GetCustomers() ([]model.CustomerInfo, error)
+	ListCustomers() ([]model.CustomerInfo, error)
 }

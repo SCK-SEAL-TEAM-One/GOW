@@ -25,7 +25,7 @@ func (api API) CreateCustomerHandler(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, customers)
+	c.JSON(http.StatusCreated, customers)
 }
 
 func (api API) GetAllCustomerHandler(c *gin.Context) {
@@ -36,7 +36,7 @@ func (api API) GetAllCustomerHandler(c *gin.Context) {
 		return
 	}
 
-	customers, err := api.CustomerService.GetCustomers()
+	customers, err := api.CustomerService.ListCustomers()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err.Error())
 		return

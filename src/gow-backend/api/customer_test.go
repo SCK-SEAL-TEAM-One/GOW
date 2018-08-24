@@ -7,6 +7,7 @@ import (
 	"gow-backend/model"
 	"gow-backend/route"
 	"io/ioutil"
+	"net/http"
 	"net/http/httptest"
 	"testing"
 )
@@ -14,7 +15,7 @@ import (
 type mockCustomerService struct {
 }
 
-func (mhs mockCustomerService) GetCustomers() ([]model.CustomerInfo, error) {
+func (mhs mockCustomerService) ListCustomers() ([]model.CustomerInfo, error) {
 	var customers = []model.CustomerInfo{
 		model.CustomerInfo{
 			ID:      1,
@@ -48,6 +49,9 @@ func Test_CreateCustomerHandler_Input_TN_Corporation_Should_Be_Status_201_With_T
 	testRoute.ServeHTTP(writer, request)
 	response := writer.Result()
 	actual, _ := ioutil.ReadAll(response.Body)
+	if response.StatusCode != http.StatusCreated {
+		t.Errorf("expect \n'%d' \nbut got it \n'%d'", http.StatusCreated, response.StatusCode)
+	}
 	if string(expected) != string(actual) {
 		t.Errorf("expect \n'%s' \nbut got it \n'%s'", expected, actual)
 	}
