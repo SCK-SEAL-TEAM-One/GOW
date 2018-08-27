@@ -11,5 +11,5 @@ type CustomerService interface {
 
 type CompaniesService interface {
 	CreateNewCompany(model.NewCompany) (model.CompanyInfo, error)
-	GetCompanies() ([]model.CompanyInfo, error)
+	//GetCompanies() ([]model.CompanyInfo, error)
 }

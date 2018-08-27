@@ -5,6 +5,21 @@ import "gow-backend/model"
 type MockCustomerRepository struct {
 }
 
+type MockCompanyRepository struct {
+}
+
+func (mcom MockCompanyRepository) Insert(model.NewCompany) (bool, error) { return true, nil }
+func (mcom MockCompanyRepository) GetByTaxID(string) (model.CompanyInfo, error) {
+	return model.CompanyInfo{
+		ID:          1,
+		Company:     "บริษัท สยามชำนาญกิจ จำกัด",
+		Branch:      "สำนักงานใหญ่",
+		Address:     "เลขที่ 3 อาคารพร้อมพันธุ์ 3 ชั้น 10 ห้อง 1001 ซอยลาดพร้าว 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร",
+		TaxID:       "0105556042151",
+		PhoneNumber: "+66979515936",
+	}, nil
+}
+
 func (m MockCustomerRepository) Insert(model.NewCustomer) (bool, error) { return true, nil }
 func (m MockCustomerRepository) GetByTaxID(string) (model.CustomerInfo, error) {
 	return model.CustomerInfo{
