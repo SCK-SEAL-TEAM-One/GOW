@@ -3,11 +3,11 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"gow-backend/gow/api"
-	"gow-backend/gow/route"
-	"gow-backend/gow/service"
+	"gow/api"
 	configLibrary "gow/config"
 	"gow/repository"
+	"gow/route"
+	"gow/service"
 )
 
 func main() {
@@ -43,8 +43,11 @@ func main() {
 	companyService := service.CompanyServiceMySQL{
 		CompanyRepository: &companyRepository,
 	}
+	companyAPI := api.CompanyAPI{
+		CompanyService: &companyService,
+	}
 
-	route := route.NewRoute(api.CompanyAPI{}, customerAPI)
+	route := route.NewRoute(companyAPI, customerAPI)
 	route.Run(fmt.Sprintf(":%s", config.Port))
 
 }
