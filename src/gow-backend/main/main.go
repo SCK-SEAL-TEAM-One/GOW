@@ -3,7 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	apiLibrary "gow-backend/api"
+	"gow-backend/api"
 	configLibrary "gow-backend/config"
 	"gow-backend/repository"
 	"gow-backend/route"
@@ -33,9 +33,9 @@ func main() {
 	customerService := service.CustomerServiceMySQL{
 		CustomerRepository: &customerRepository,
 	}
-	api := apiLibrary.API{
+	customerAPI := api.CustomerAPI{
 		CustomerService: &customerService,
 	}
-	route := route.NewRoute(api)
+	route := route.NewRoute(api.CompanyAPI{}, customerAPI)
 	route.Run(fmt.Sprintf(":%s", config.Port))
 }
