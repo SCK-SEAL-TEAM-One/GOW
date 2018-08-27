@@ -8,8 +8,17 @@ import (
 )
 
 type Config struct {
-	Mysql string `json:"mysql"`
+	Mysql Mysql  `json:"mysql"`
 	Port  string `json:"port"`
+}
+type Mysql struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Database string `json:"database"`
+}
+
+func (m Mysql) GetURI() string {
+	return fmt.Sprintf("%s:%s@/%s?parseTime=true", m.Username, m.Password, m.Database)
 }
 
 func SetupConfig() (Config, error) {
@@ -24,7 +33,6 @@ func SetupConfig() (Config, error) {
 		fmt.Printf("cannot read config file %s", err)
 		return config, err
 	}
-
 	err = json.Unmarshal(configFile, &config)
 	return config, err
 }

@@ -13,12 +13,14 @@ import (
 func main() {
 	config, err := configLibrary.SetupConfig()
 	if err != nil {
-		panic(err.Error())
+		fmt.Printf("%s", err)
+		return
 	}
 
-	db, err := sql.Open("mysql", fmt.Sprintf("%s?parseTime=true", config.Mysql))
+	db, err := sql.Open("mysql", config.Mysql.GetURI())
 	if err != nil {
-		panic(err.Error())
+		fmt.Printf("%s", err)
+		return
 	}
 	defer db.Close()
 	customerRepository := repository.CustomerRepositoryMySQL{
