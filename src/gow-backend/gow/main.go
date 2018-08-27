@@ -3,11 +3,11 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"gow-backend/api"
-	configLibrary "gow-backend/config"
-	"gow-backend/repository"
-	"gow-backend/route"
-	"gow-backend/service"
+	"gow/api"
+	configLibrary "gow/config"
+	"gow/repository"
+	"gow/route"
+	"gow/service"
 )
 
 func main() {
