@@ -1,8 +1,8 @@
 package api
 
 import (
-	"gow-backend/model"
-	"gow-backend/service"
+	"gow/model"
+	"gow/service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
