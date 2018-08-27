@@ -2,8 +2,8 @@ package api_test
 
 import (
 	"bytes"
-	"gow-backend/api"
-	"gow-backend/route"
+	"gow/api"
+	"gow/route"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"

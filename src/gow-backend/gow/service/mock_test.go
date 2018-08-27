@@ -1,6 +1,6 @@
 package service_test
 
-import "gow-backend/model"
+import "gow/model"
 
 type MockCustomerRepository struct {
 }

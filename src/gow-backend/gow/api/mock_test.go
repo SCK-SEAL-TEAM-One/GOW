@@ -2,7 +2,7 @@ package api_test
 
 import (
 	"encoding/json"
-	"gow-backend/model"
+	"gow/model"
 	"io/ioutil"
 )
 
