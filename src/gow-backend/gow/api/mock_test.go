@@ -38,7 +38,7 @@ func (m mockCompanyService) CreateNewCompany(newCompany model.NewCompany) (model
 	json.Unmarshal(company, &companyInfo)
 	return companyInfo, nil
 }
-func (m mockCompanyService) GetCompanies() ([]model.CompanyInfo, error) {
+func (m mockCompanyService) ListCompanies() ([]model.CompanyInfo, error) {
 	readFlie, _ := ioutil.ReadFile("companiesResponseInfo.json")
 	var companies []model.CompanyInfo
 	json.Unmarshal(readFlie, &companies)

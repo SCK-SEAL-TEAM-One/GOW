@@ -28,7 +28,7 @@ func (api CompanyAPI) CreateCompanyHandler(c *gin.Context) {
 }
 
 func (api CompanyAPI) GetAllCompaniesHandler(c *gin.Context) {
-	companies, err := api.CompanyService.GetCompanies()
+	companies, err := api.CompanyService.ListCompanies()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err.Error())
 		return
