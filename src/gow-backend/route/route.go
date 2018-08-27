@@ -6,9 +6,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func NewRoute(api apiLibrary.API) *gin.Engine {
+func NewRoute(companyApi apiLibrary.CompanyAPI, customerApi apiLibrary.CustomerAPI) *gin.Engine {
 	route := gin.Default()
-	route.POST("api/v1/customers", api.CreateCustomerHandler)
-	route.GET("api/v1/customers", api.GetAllCustomerHandler)
+	route.POST("api/v1/customers", customerApi.CreateCustomerHandler)
+	route.GET("api/v1/customers", customerApi.GetAllCustomerHandler)
+	route.POST("api/v1/companies", companyApi.CreateCompanyHandler)
 	return route
 }

@@ -9,7 +9,7 @@ type CustomerService interface {
 	ListCustomers() ([]model.CustomerInfo, error)
 }
 
-type CompaniesService interface {
+type CompanyService interface {
 	CreateNewCompany(model.NewCompany) (model.CompanyInfo, error)
 	GetCompanies() ([]model.CompanyInfo, error)
 }
