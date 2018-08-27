@@ -2,8 +2,8 @@ package service
 
 import (
 	"fmt"
-	"gow-backend/model"
-	"gow-backend/repository"
+	"gow/model"
+	"gow/repository"
 )
 
 type CustomerServiceMySQL struct {

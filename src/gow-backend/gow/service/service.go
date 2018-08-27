@@ -1,7 +1,7 @@
 package service
 
 import (
-	"gow-backend/model"
+	"gow/model"
 )
 
 type CustomerService interface {

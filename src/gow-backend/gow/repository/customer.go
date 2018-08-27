@@ -2,7 +2,7 @@ package repository
 
 import (
 	"database/sql"
-	"gow-backend/model"
+	"gow/model"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
