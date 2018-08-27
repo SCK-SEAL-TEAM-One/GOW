@@ -25,3 +25,7 @@ func (companyService CompanyServiceMySQL) CreateNewCompany(newCompany model.NewC
 	}
 	return createdCompany, nil
 }
+
+func (companyService CompanyServiceMySQL) GetCompanies() ([]model.CompanyInfo, error) {
+	return []model.CompanyInfo{}, nil
+}
