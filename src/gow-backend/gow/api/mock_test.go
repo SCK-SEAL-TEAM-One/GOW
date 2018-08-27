@@ -39,5 +39,8 @@ func (m mockCompanyService) CreateNewCompany(newCompany model.NewCompany) (model
 	return companyInfo, nil
 }
 func (m mockCompanyService) GetCompanies() ([]model.CompanyInfo, error) {
-	return []model.CompanyInfo{}, nil
+	readFlie, _ := ioutil.ReadFile("companiesResponseInfo.json")
+	var companies []model.CompanyInfo
+	json.Unmarshal(readFlie, &companies)
+	return companies, nil
 }

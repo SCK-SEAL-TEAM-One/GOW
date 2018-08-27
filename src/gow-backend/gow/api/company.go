@@ -26,3 +26,12 @@ func (api CompanyAPI) CreateCompanyHandler(c *gin.Context) {
 	}
 	c.JSON(http.StatusCreated, createdCompany)
 }
+
+func (api CompanyAPI) GetAllCompaniesHandler(c *gin.Context) {
+	companies, err := api.CompanyService.GetCompanies()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, err.Error())
+		return
+	}
+	c.JSON(http.StatusOK, companies)
+}

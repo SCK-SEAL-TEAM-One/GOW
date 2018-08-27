@@ -11,5 +11,6 @@ func NewRoute(companyApi apiLibrary.CompanyAPI, customerApi apiLibrary.CustomerA
 	route.POST("api/v1/customers", customerApi.CreateCustomerHandler)
 	route.GET("api/v1/customers", customerApi.GetAllCustomerHandler)
 	route.POST("api/v1/companies", companyApi.CreateCompanyHandler)
+	route.GET("api/v1/companies", companyApi.GetAllCompaniesHandler)
 	return route
 }
