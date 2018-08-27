@@ -20,5 +20,5 @@ install:
 before_script: cd $HOME/gopath/src/github.com/SCK-SEAL-TEAM-One/GOW/src/gow-backend/gow
 script:
   - env GO111MODULE=on go build .
-  - env GO111MODULE=on go test -covermode=count -coverprofile=coverage.out
+  - env GO111MODULE=on go test -covermode=count -coverprofile=coverage.out ./...
   - env GO111MODULE=on $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci
