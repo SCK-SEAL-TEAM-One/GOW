@@ -1,0 +1,8 @@
+{
+    "mysql": {
+        "username":"root",
+        "password":"sckshuhari",
+        "database":"GOW"
+    },
+    "port": "3000"
+}
