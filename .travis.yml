@@ -1,6 +1,14 @@
 language: go
 go:
-  - 1.10
+  - master
+
+os:
+  - linux
+
+dist: trusty
+sudo: false 
+
+install: true
 services:
   - mysql
 before_install:
@@ -8,8 +16,9 @@ before_install:
 install:
   - go get golang.org/x/tools/cmd/cover
   - go get github.com/mattn/goveralls
+
+before_script: cd $HOME/gopath/src/github.com/SCK-SEAL-TEAM-One/GOW/src/gow-backend/gow
 script:
-  - cd $HOME/gow-backend/gow
   - env GO111MODULE=on go build 
   - env GO111MODULE=on go test -covermode=count -coverprofile=coverage.out
-  - $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci
+  - env GO111MODULE=on go $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci
