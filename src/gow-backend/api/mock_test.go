@@ -6,6 +6,9 @@ import (
 	"io/ioutil"
 )
 
+type mockCompanyService struct {
+}
+
 type mockCustomerService struct {
 }
 
@@ -27,4 +30,14 @@ func (mhs mockCustomerService) CreateNewCustomer(newcustomer model.NewCustomer) 
 	customers, _ := ioutil.ReadFile("./customerResponse.json")
 	json.Unmarshal(customers, &customerInfo)
 	return customerInfo, nil
+}
+
+func (m mockCompanyService) CreateNewCompany(newCompany model.NewCompany) (model.CompanyInfo, error) {
+	var companyInfo model.CompanyInfo
+	company, _ := ioutil.ReadFile("./companyResponse.json")
+	json.Unmarshal(company, &companyInfo)
+	return companyInfo, nil
+}
+func (m mockCompanyService) GetCompanies() ([]model.CompanyInfo, error) {
+	return []model.CompanyInfo{}, nil
 }
