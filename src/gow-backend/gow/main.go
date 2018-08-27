@@ -44,7 +44,7 @@ func main() {
 		CompanyRepository: &companyRepository,
 	}
 	companyAPI := api.CompanyAPI{
-		CompanyService: companyService,
+		CompanyService: &companyService,
 	}
 	route := route.NewRoute(companyAPI, customerAPI)
 	route.Run(fmt.Sprintf(":%s", config.Port))
