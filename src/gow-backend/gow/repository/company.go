@@ -52,5 +52,25 @@ func (comrepo CompanyRepositoryMySQL) GetByTaxID(companyTaxID string) (model.Com
 }
 
 func (comrepo CompanyRepositoryMySQL) GetAll() ([]model.CompanyInfo, error) {
-	return []model.CompanyInfo{}, nil
+	var companyInfo []model.CompanyInfo
+	statementQuery := `SELECT * FROM company`
+	rows, err := comrepo.DBConnection.Query(statementQuery)
+	if err != nil {
+		return companyInfo, err
+	}
+	for rows.Next() {
+		var company model.CompanyInfo
+		rows.Scan(
+			&company.ID,
+			&company.Company,
+			&company.Branch,
+			&company.Address,
+			&company.TaxID,
+			&company.PhoneNumber,
+			&company.CreatedTime,
+			&company.UpdatedTime,
+		)
+		companyInfo = append(companyInfo, company)
+	}
+	return companyInfo, nil
 }

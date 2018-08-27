@@ -69,6 +69,5 @@ func (repository CustomerRepositoryMySQL) GetAll() ([]model.CustomerInfo, error)
 		)
 		customerInfo = append(customerInfo, customer)
 	}
-
 	return customerInfo, nil
 }
