@@ -19,7 +19,18 @@ func (mcom MockCompanyRepository) GetByTaxID(string) (model.CompanyInfo, error) 
 		PhoneNumber: "+66979515936",
 	}, nil
 }
-
+func (mcom MockCompanyRepository) GetAll() ([]model.CompanyInfo, error) {
+	return []model.CompanyInfo{
+		model.CompanyInfo{
+			ID:          1,
+			Company:     "บริษัท สยามชำนาญกิจ จำกัด",
+			Branch:      "สำนักงานใหญ่",
+			Address:     "เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1001 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900",
+			TaxID:       "0705556042131",
+			PhoneNumber: "+66979575936",
+		},
+	}, nil
+}
 func (m MockCustomerRepository) Insert(model.NewCustomer) (bool, error) { return true, nil }
 func (m MockCustomerRepository) GetByTaxID(string) (model.CustomerInfo, error) {
 	return model.CustomerInfo{

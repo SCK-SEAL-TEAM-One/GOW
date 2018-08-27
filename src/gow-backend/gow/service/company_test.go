@@ -33,3 +33,30 @@ func Test_CreateNewCompany_Input_Data_Companies_SiamChamnankit_Should_Be_Compani
 	}
 
 }
+
+func Test_ListCompanies_Should_Be_CompaniesInfo(t *testing.T) {
+	companyService := CompanyServiceMySQL{
+		CompanyRepository: &MockCompanyRepository{},
+	}
+	expectedCompanies := []model.CompanyInfo{
+		model.CompanyInfo{
+			ID:          1,
+			Company:     "บริษัท สยามชำนาญกิจ จำกัด",
+			Branch:      "สำนักงานใหญ่",
+			Address:     "เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1001 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900",
+			TaxID:       "0705556042131",
+			PhoneNumber: "+66979575936",
+		},
+	}
+
+	listCompanies, _ := companyService.ListCompanies()
+
+	if len(listCompanies) == 0 {
+		t.Errorf("expected companies length is %d but it got %d", len(expectedCompanies), len(listCompanies))
+	}
+	for index, listCompany := range listCompanies {
+		if expectedCompanies[index] != listCompany {
+			t.Errorf("expect %v but got it %v", expectedCompanies, listCompanies)
+		}
+	}
+}

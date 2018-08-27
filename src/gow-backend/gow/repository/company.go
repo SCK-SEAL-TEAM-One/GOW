@@ -9,6 +9,7 @@ import (
 type CompanyRepository interface {
 	Insert(model.NewCompany) (bool, error)
 	GetByTaxID(string) (model.CompanyInfo, error)
+	GetAll() ([]model.CompanyInfo, error)
 }
 type CompanyRepositoryMySQL struct {
 	DBConnection *sql.DB
@@ -48,4 +49,8 @@ func (comrepo CompanyRepositoryMySQL) GetByTaxID(companyTaxID string) (model.Com
 		return model.CompanyInfo{}, err
 	}
 	return companyInfo, nil
+}
+
+func (comrepo CompanyRepositoryMySQL) GetAll() ([]model.CompanyInfo, error) {
+	return []model.CompanyInfo{}, nil
 }
