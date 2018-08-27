@@ -29,3 +29,23 @@ func (comrepo CompanyRepositoryMySQL) Insert(newCompany model.NewCompany) (bool,
 	return true, nil
 
 }
+
+func (comrepo CompanyRepositoryMySQL) GetByTaxID(companyTaxID string) (model.CompanyInfo, error) {
+	var companyInfo model.CompanyInfo
+	statementQuery := `SELECT * FROM company WHERE company_taxid=?`
+	row := comrepo.DBConnection.QueryRow(statementQuery, companyTaxID)
+	err := row.Scan(
+		&companyInfo.ID,
+		&companyInfo.Company,
+		&companyInfo.Branch,
+		&companyInfo.Address,
+		&companyInfo.TaxID,
+		&companyInfo.PhoneNumber,
+		&companyInfo.CreatedTime,
+		&companyInfo.UpdatedTime,
+	)
+	if err != nil {
+		return model.CompanyInfo{}, err
+	}
+	return companyInfo, nil
+}
