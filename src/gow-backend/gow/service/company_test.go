@@ -39,7 +39,7 @@ func Test_ListCompanies_Should_Be_CompaniesInfo(t *testing.T) {
 		CompanyRepository: &MockCompanyRepository{},
 	}
 	expectedCompanies := []model.CompanyInfo{
-		model.CompanyInfo{
+		{
 			ID:          1,
 			Company:     "บริษัท สยามชำนาญกิจ จำกัด",
 			Branch:      "สำนักงานใหญ่",

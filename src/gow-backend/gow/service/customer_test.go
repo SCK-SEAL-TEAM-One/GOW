@@ -36,7 +36,7 @@ func Test_ListCustomers_Should_Be_CustomerInfo(t *testing.T) {
 		CustomerRepository: &MockCustomerRepository{},
 	}
 	expectedCustomers := []model.CustomerInfo{
-		model.CustomerInfo{ID: 1,
+		{ID: 1,
 			Company: "บริษัท ที.เอ็น. อินคอร์ปอเรชั่นจำกัด",
 			Branch:  "สำนักงานใหญ่",
 			Address: "3 อาคารรัจนาการ ถนนสาทรใต้ แขวงยานนาวา เขตสาทร กรุงเทพมหานคร 10120",

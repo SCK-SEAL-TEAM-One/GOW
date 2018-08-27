@@ -14,7 +14,7 @@ type mockCustomerService struct {
 
 func (mhs mockCustomerService) ListCustomers() ([]model.CustomerInfo, error) {
 	var customers = []model.CustomerInfo{
-		model.CustomerInfo{
+		{
 			ID:      1,
 			Company: "บริษัท ที.เอ็น. อินคอร์ปอเรชั่น จำกัด",
 			Branch:  "สำนักงานใหญ่",

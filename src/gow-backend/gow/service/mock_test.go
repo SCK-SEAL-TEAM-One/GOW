@@ -21,7 +21,7 @@ func (mcom MockCompanyRepository) GetByTaxID(string) (model.CompanyInfo, error) 
 }
 func (mcom MockCompanyRepository) GetAll() ([]model.CompanyInfo, error) {
 	return []model.CompanyInfo{
-		model.CompanyInfo{
+		{
 			ID:          1,
 			Company:     "บริษัท สยามชำนาญกิจ จำกัด",
 			Branch:      "สำนักงานใหญ่",
@@ -43,7 +43,7 @@ func (m MockCustomerRepository) GetByTaxID(string) (model.CustomerInfo, error) {
 }
 func (m MockCustomerRepository) GetAll() ([]model.CustomerInfo, error) {
 	return []model.CustomerInfo{
-			model.CustomerInfo{
+			{
 				ID:      1,
 				Company: "บริษัท ที.เอ็น. อินคอร์ปอเรชั่นจำกัด",
 				Branch:  "สำนักงานใหญ่",
