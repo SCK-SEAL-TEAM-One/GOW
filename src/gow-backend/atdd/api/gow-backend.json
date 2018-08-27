@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c33d3007-8f3c-4a2e-85ec-f8bcbca8abbf",
+		"_postman_id": "f6297ba8-7a5a-44dd-92a6-c6a35a662a85",
 		"name": "gow-backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -62,64 +62,6 @@
 			"response": []
 		},
 		{
-			"name": "create new company",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "5ccc0ef3-71b3-4871-a26d-432068383400",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"var companyData = pm.response.json();",
-							"",
-							"pm.test(\"company id should be defined\", function () {",
-							"    pm.expect(companyData.id).to.exist;",
-							"});",
-							"",
-							"pm.test(\"company should be บริษัทสยามชำนาญกิจ จำกัด\", function () {",
-							"    pm.expect(companyData.company).to.eql(\"บริษัท สยามชำนาญกิจ จำกัด\");",
-							"    pm.expect(companyData.branch).to.eql(\"สำนักงานใหญ่\");",
-							"    pm.expect(companyData.address).to.eql(\"เลขที่ 3 อาคารพร้อมพันธุ์ 3 ชั้น 10 ห้อง 1001 ซอยลาดพร้าว 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\");",
-							"    pm.expect(companyData.taxid).to.eql(\"0105556042151\");",
-							"    pm.expect(companyData.phoneNumber).to.eql(\"+66979515936\");",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"company\":\"บริษัท สยามชำนาญกิจ จำกัด\",\n\t\"branch\":\"สำนักงานใหญ่\",\n\t\"address\":\"เลขที่ 3 อาคารพร้อมพันธุ์ 3 ชั้น 10 ห้อง 1001 ซอยลาดพร้าว 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\",\n\t\"taxID\":\"0105556042151\",\n\t\"phoneNumber\" : \"+66979515936\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/v1/companies",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v1",
-						"companies"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "list customers",
 			"event": [
 				{
@@ -155,6 +97,10 @@
 						"value": "application/json"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:3000/api/v1/customers",
 					"protocol": "http",
@@ -172,22 +118,22 @@
 			"response": []
 		},
 		{
-			"name": "list companies",
+			"name": "create new company",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "15342230-f399-44d5-8e48-396a8f44d095",
+						"id": "5ccc0ef3-71b3-4871-a26d-432068383400",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
 							"});",
 							"",
 							"var companyData = pm.response.json();",
 							"",
 							"pm.test(\"company id should be defined\", function () {",
-							"    pm.expect(companyData.length > 0).to.eql(true);",
+							"    pm.expect(companyData.id).to.exist;",
 							"});",
 							"",
 							"pm.test(\"company should be บริษัทสยามชำนาญกิจ จำกัด\", function () {",
@@ -202,6 +148,64 @@
 				}
 			],
 			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"company\":\"บริษัทสยามชำนาญกิจ จำกัด\",\n\t\"branch\":\"สำนักงานใหญ่\",\n\t\"address\":\"เลขที่ 3 อาคารพร้อมพันธุ์ 3 ชั้น 10 ห้อง 1001 ซอยลาดพร้าว 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\",\n\t\"taxID\":\"0105556042151\",\n\t\"phoneNumber\" : \"+66979515936\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/companies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list companies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "78b75c72-3445-4f45-bcce-a3e83ce57c99",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var companyData = pm.response.json();",
+							"",
+							"pm.test(\"company id should be defined\", function () {",
+							"    pm.expect(companyData.length > 0).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"company should be บริษัทสยามชำนาญกิจ จำกัด\", function () {",
+							"    pm.expect(companyData[0].company).to.eql(\"บริษัทสยามชำนาญกิจ จำกัด\");",
+							"    pm.expect(companyData[0].branch).to.eql(\"สำนักงานใหญ่\");",
+							"    pm.expect(companyData[0].address).to.eql(\"เลขที่ 3 อาคารพร้อมพันธุ์ 3 ชั้น 10 ห้อง 1001 ซอยลาดพร้าว 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\");",
+							"    pm.expect(companyData[0].taxid).to.eql(\"0105556042151\");",
+							"    pm.expect(companyData[0].phoneNumber).to.eql(\"+66979515936\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
 				"method": "GET",
 				"header": [
 					{
@@ -209,6 +213,10 @@
 						"value": "application/json"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:3000/api/v1/companies",
 					"protocol": "http",
