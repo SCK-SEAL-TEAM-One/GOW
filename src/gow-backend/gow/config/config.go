@@ -28,7 +28,7 @@ func SetupConfig() (Config, error) {
 		environment = os.Getenv("ENV")
 	}
 
-	configFile, err := ioutil.ReadFile(fmt.Sprintf("./configs/%s.json", environment))
+	configFile, err := ioutil.ReadFile(fmt.Sprintf("../configs/%s.json", environment))
 	if err != nil {
 		fmt.Printf("cannot read config file %s", err)
 		return config, err
