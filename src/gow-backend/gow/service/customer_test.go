@@ -1,8 +1,8 @@
 package service_test
 
 import (
-	"gow-backend/model"
-	. "gow-backend/service"
+	"gow/model"
+	. "gow/service"
 	"testing"
 )
 

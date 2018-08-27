@@ -1,7 +1,7 @@
 package route
 
 import (
-	apiLibrary "gow-backend/api"
+	apiLibrary "gow/api"
 
 	"github.com/gin-gonic/gin"
 )
