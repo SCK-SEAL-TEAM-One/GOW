@@ -14,11 +14,11 @@ type CustomerRepository interface {
 	GetAll() ([]model.CustomerInfo, error)
 }
 type CustomerRepositoryMySQL struct {
-	ConnetionDB *sql.DB
+	DBConnection *sql.DB
 }
 
 func (repository CustomerRepositoryMySQL) Insert(newCustomer model.NewCustomer) (bool, error) {
-	statementInsert, err := repository.ConnetionDB.Prepare(`INSERT INTO customer 
+	statementInsert, err := repository.DBConnection.Prepare(`INSERT INTO customer 
 	(customer_name,customer_branch,customer_address,customer_taxid,created_time,updated_time)
 	VALUES( ?, ?, ?, ?, ?, ? )`)
 	if err != nil {
@@ -34,7 +34,7 @@ func (repository CustomerRepositoryMySQL) Insert(newCustomer model.NewCustomer) 
 func (repository CustomerRepositoryMySQL) GetByTaxID(customerTaxID string) (model.CustomerInfo, error) {
 	var customerInfo model.CustomerInfo
 	statementQuery := `SELECT * FROM customer WHERE customer_taxid=?`
-	row := repository.ConnetionDB.QueryRow(statementQuery, customerTaxID)
+	row := repository.DBConnection.QueryRow(statementQuery, customerTaxID)
 	err := row.Scan(
 		&customerInfo.ID,
 		&customerInfo.Company,
@@ -52,7 +52,7 @@ func (repository CustomerRepositoryMySQL) GetByTaxID(customerTaxID string) (mode
 func (repository CustomerRepositoryMySQL) GetAll() ([]model.CustomerInfo, error) {
 	var customerInfo []model.CustomerInfo
 	statementQuery := `SELECT * FROM customer `
-	rows, err := repository.ConnetionDB.Query(statementQuery)
+	rows, err := repository.DBConnection.Query(statementQuery)
 	if err != nil {
 		return customerInfo, err
 	}

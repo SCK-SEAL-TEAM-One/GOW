@@ -28,7 +28,7 @@ func main() {
 	}
 
 	customerRepository := repository.CustomerRepositoryMySQL{
-		ConnetionDB: db,
+		DBConnection: db,
 	}
 	customerService := service.CustomerServiceMySQL{
 		CustomerRepository: &customerRepository,
