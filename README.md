@@ -1,6 +1,6 @@
 ## Instruction to run
 * Update go to go 1.11
-* Change dir to src/gow-backend-gow
+* Change dir to src/gow-backend/gow
 * Run $go test ./...
 * Run $go build .
 * API should be work corectly
