@@ -8,11 +8,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type API struct {
+type CustomerAPI struct {
 	CustomerService service.CustomerService
 }
 
-func (api API) CreateCustomerHandler(c *gin.Context) {
+func (api CustomerAPI) CreateCustomerHandler(c *gin.Context) {
 	var newCustomer model.NewCustomer
 	err := c.Bind(&newCustomer)
 	if err != nil {
@@ -28,7 +28,7 @@ func (api API) CreateCustomerHandler(c *gin.Context) {
 	c.JSON(http.StatusCreated, createdCustomer)
 }
 
-func (api API) GetAllCustomerHandler(c *gin.Context) {
+func (api CustomerAPI) GetAllCustomerHandler(c *gin.Context) {
 	customers, err := api.CustomerService.ListCustomers()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err.Error())

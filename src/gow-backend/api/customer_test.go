@@ -2,7 +2,7 @@ package api_test
 
 import (
 	"bytes"
-	"gow-backend/api"
+	. "gow-backend/api"
 	"gow-backend/route"
 	"io/ioutil"
 	"net/http"
@@ -17,10 +17,10 @@ func Test_CreateCustomerHandler_Input_TN_Corporation_Should_Be_Status_201_With_T
 	request.Header.Set("Content-Type", "application/json")
 	writer := httptest.NewRecorder()
 	mockGetCustomer := mockCustomerService{}
-	api := api.API{
+	api := CustomerAPI{
 		CustomerService: &mockGetCustomer,
 	}
-	testRoute := route.NewRoute(api)
+	testRoute := route.NewRoute(CompanyAPI{}, api)
 
 	testRoute.ServeHTTP(writer, request)
 	response := writer.Result()
@@ -41,10 +41,10 @@ func Test_GetAllCustomerHandler_Should_Be_CustomerInfo(t *testing.T) {
 	request.Header.Set("Content-Type", "application/json")
 	writer := httptest.NewRecorder()
 	mockGetCustomer := mockCustomerService{}
-	api := api.API{
+	api := CustomerAPI{
 		CustomerService: &mockGetCustomer,
 	}
-	testRoute := route.NewRoute(api)
+	testRoute := route.NewRoute(CompanyAPI{}, api)
 
 	testRoute.ServeHTTP(writer, request)
 	response := writer.Result()
