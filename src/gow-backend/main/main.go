@@ -13,16 +13,20 @@ import (
 func main() {
 	config, err := configLibrary.SetupConfig()
 	if err != nil {
-		fmt.Printf("%s", err)
-		return
+		panic(err.Error())
 	}
 
 	db, err := sql.Open("mysql", config.Mysql.GetURI())
 	if err != nil {
-		fmt.Printf("%s", err)
-		return
+		panic(err.Error())
 	}
 	defer db.Close()
+
+	err = db.Ping()
+	if err != nil {
+		panic(err.Error())
+	}
+
 	customerRepository := repository.CustomerRepositoryMySQL{
 		ConnetionDB: db,
 	}
