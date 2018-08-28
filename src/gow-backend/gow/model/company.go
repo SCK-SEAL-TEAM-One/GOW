@@ -55,3 +55,28 @@ func (newCompany NewCompany) ToCompanyModel() Company {
 		PhoneNumber: newCompany.PhoneNumber,
 	}
 }
+
+func (company Company) ToCompanyInfo() CompanyInfo {
+	if company.NameTH != "" {
+		return CompanyInfo{
+			ID:          company.ID,
+			Company:     company.NameTH,
+			Branch:      company.BranchTH,
+			Address:     company.AddressTH,
+			TaxID:       company.TaxID,
+			PhoneNumber: company.PhoneNumber,
+			CreatedTime: company.CreatedTime,
+			UpdatedTime: company.UpdatedTime,
+		}
+	}
+	return CompanyInfo{
+		ID:          company.ID,
+		Company:     company.NameEN,
+		Branch:      company.BranchEN,
+		Address:     company.AddressEN,
+		TaxID:       company.TaxID,
+		PhoneNumber: company.PhoneNumber,
+		CreatedTime: company.CreatedTime,
+		UpdatedTime: company.UpdatedTime,
+	}
+}
