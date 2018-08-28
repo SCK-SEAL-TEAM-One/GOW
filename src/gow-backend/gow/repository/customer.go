@@ -18,36 +18,42 @@ type CustomerRepositoryMySQL struct {
 }
 
 func (repository CustomerRepositoryMySQL) Insert(newCustomer model.NewCustomer) (bool, error) {
-	statementInsert, err := repository.DBConnection.Prepare(`INSERT INTO customer 
-	(customer_name,customer_branch,customer_address,customer_taxid,created_time,updated_time)
-	VALUES( ?, ?, ?, ?, ?, ? )`)
+	customer := newCustomer.ToCustomerModel()
+	statement := `INSERT INTO customer 
+	(customer_name_th,customer_name_en,customer_branch_th,customer_branch_en,
+	customer_address_th,customer_address_en,customer_taxid,created_time,updated_time)
+	VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ? )`
+	statementInsert, err := repository.DBConnection.Prepare(statement)
 	if err != nil {
 		return false, err
 	}
 	defer statementInsert.Close()
-	_, err = statementInsert.Exec(newCustomer.Company, newCustomer.Branch, newCustomer.Address, newCustomer.TaxID, time.Now(), time.Now())
+	_, err = statementInsert.Exec(customer.NameTH, customer.NameEN, customer.BranchTH, customer.BranchEN, customer.AddressTH, customer.AddressEN, customer.TaxID, time.Now(), time.Now())
 	if err != nil {
 		return false, err
 	}
 	return true, nil
 }
 func (repository CustomerRepositoryMySQL) GetByTaxID(customerTaxID string) (model.CustomerInfo, error) {
-	var customerInfo model.CustomerInfo
+	var customer model.Customer
 	statementQuery := `SELECT * FROM customer WHERE customer_taxid=?`
 	row := repository.DBConnection.QueryRow(statementQuery, customerTaxID)
 	err := row.Scan(
-		&customerInfo.ID,
-		&customerInfo.Company,
-		&customerInfo.Branch,
-		&customerInfo.Address,
-		&customerInfo.TaxID,
-		&customerInfo.CreatedTime,
-		&customerInfo.UpdatedTime,
+		&customer.ID,
+		&customer.NameTH,
+		&customer.NameEN,
+		&customer.BranchTH,
+		&customer.BranchEN,
+		&customer.AddressTH,
+		&customer.AddressEN,
+		&customer.TaxID,
+		&customer.CreatedTime,
+		&customer.UpdatedTime,
 	)
 	if err != nil {
 		return model.CustomerInfo{}, err
 	}
-	return customerInfo, nil
+	return customer.ToCustomerInfo(), nil
 }
 func (repository CustomerRepositoryMySQL) GetAll() ([]model.CustomerInfo, error) {
 	var customerInfo []model.CustomerInfo
@@ -57,17 +63,20 @@ func (repository CustomerRepositoryMySQL) GetAll() ([]model.CustomerInfo, error)
 		return customerInfo, err
 	}
 	for rows.Next() {
-		var customer model.CustomerInfo
+		var customer model.Customer
 		rows.Scan(
 			&customer.ID,
-			&customer.Company,
-			&customer.Branch,
-			&customer.Address,
+			&customer.NameTH,
+			&customer.NameEN,
+			&customer.BranchTH,
+			&customer.BranchEN,
+			&customer.AddressTH,
+			&customer.AddressEN,
 			&customer.TaxID,
 			&customer.CreatedTime,
 			&customer.UpdatedTime,
 		)
-		customerInfo = append(customerInfo, customer)
+		customerInfo = append(customerInfo, customer.ToCustomerInfo())
 	}
 	return customerInfo, nil
 }
