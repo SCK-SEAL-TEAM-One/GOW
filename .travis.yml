@@ -25,5 +25,5 @@ script:
   - env GO111MODULE=on go build .
   - env GO111MODULE=on go test -covermode=count -coverprofile=coverage.out ./...
   - env GO111MODULE=on $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci
-  - ./gow &
+  - env ENV=test ./gow &
   - newman run $HOME/gopath/src/github.com/SCK-SEAL-TEAM-One/GOW/src/gow-backend/atdd/api/gow-backend.json
