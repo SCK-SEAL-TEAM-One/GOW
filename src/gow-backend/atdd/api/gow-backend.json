@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f6297ba8-7a5a-44dd-92a6-c6a35a662a85",
+		"_postman_id": "4829ef30-01e0-4c19-87bc-c809b2321aed",
 		"name": "gow-backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -118,7 +118,7 @@
 			"response": []
 		},
 		{
-			"name": "create new company",
+			"name": "create new company (Siam chamnankit)",
 			"event": [
 				{
 					"listen": "test",
@@ -176,12 +176,70 @@
 			"response": []
 		},
 		{
+			"name": "create new company (Shu Ha Ri)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "077403fe-4fd4-42bc-8398-d5bdc657585b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"var companyData = pm.response.json();",
+							"",
+							"pm.test(\"company id should be defined\", function () {",
+							"    pm.expect(companyData.id).to.exist;",
+							"});",
+							"",
+							"pm.test(\"company should be บริษัท ชู ฮา ริ จำกัด\", function () {",
+							"    pm.expect(companyData.company).to.eql(\"บริษัท ชู ฮา ริ จำกัด\");",
+							"    pm.expect(companyData.branch).to.eql(\"สำนักงานใหญ่\");",
+							"    pm.expect(companyData.address).to.eql(\"เลขที่ 3 อาคารพร้อมพันธุ์ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าว 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\");",
+							"    pm.expect(companyData.taxid).to.eql(\"0105561001221\");",
+							"    pm.expect(companyData.phoneNumber).to.eql(\"+66979515936\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"company\":\"บริษัท ชู ฮา ริ จำกัด\",\n\t\"branch\":\"สำนักงานใหญ่\",\n\t\"address\":\"เลขที่ 3 อาคารพร้อมพันธุ์ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าว 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\",\n\t\"taxID\":\"0105561001221\",\n\t\"phoneNumber\" : \"+66979515936\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/companies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "list companies",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "78b75c72-3445-4f45-bcce-a3e83ce57c99",
+						"id": "cdbdaa53-3a27-41d9-b0a1-3149ba8db082",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
@@ -190,16 +248,24 @@
 							"",
 							"var companyData = pm.response.json();",
 							"",
-							"pm.test(\"company id should be defined\", function () {",
-							"    pm.expect(companyData.length > 0).to.eql(true);",
+							"pm.test(\"companies should be 2\", function () {",
+							"    pm.expect(companyData.length).to.eql(2);",
 							"});",
 							"",
-							"pm.test(\"company should be บริษัทสยามชำนาญกิจ จำกัด\", function () {",
+							"pm.test(\"first company should be บริษัทสยามชำนาญกิจ จำกัด\", function () {",
 							"    pm.expect(companyData[0].company).to.eql(\"บริษัทสยามชำนาญกิจ จำกัด\");",
 							"    pm.expect(companyData[0].branch).to.eql(\"สำนักงานใหญ่\");",
 							"    pm.expect(companyData[0].address).to.eql(\"เลขที่ 3 อาคารพร้อมพันธุ์ 3 ชั้น 10 ห้อง 1001 ซอยลาดพร้าว 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\");",
 							"    pm.expect(companyData[0].taxid).to.eql(\"0105556042151\");",
 							"    pm.expect(companyData[0].phoneNumber).to.eql(\"+66979515936\");",
+							"});",
+							"",
+							"pm.test(\"second company should be บริษัท ชู ฮา ริ จำกัด\", function () {",
+							"    pm.expect(companyData[1].company).to.eql(\"บริษัท ชู ฮา ริ จำกัด\");",
+							"    pm.expect(companyData[1].branch).to.eql(\"สำนักงานใหญ่\");",
+							"    pm.expect(companyData[1].address).to.eql(\"เลขที่ 3 อาคารพร้อมพันธุ์ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าว 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\");",
+							"    pm.expect(companyData[1].taxid).to.eql(\"0105561001221\");",
+							"    pm.expect(companyData[1].phoneNumber).to.eql(\"+66979515936\");",
 							"});"
 						]
 					}
