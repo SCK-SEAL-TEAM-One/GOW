@@ -50,3 +50,22 @@ func (newCustomer NewCustomer) ToCustomerModel() Customer {
 		TaxID:     newCustomer.TaxID,
 	}
 }
+
+func (customer Customer) ToCustomerInfo() CustomerInfo {
+	if customer.NameTH != "" {
+		return CustomerInfo{
+			ID:      customer.ID,
+			Company: customer.NameTH,
+			Branch:  customer.BranchTH,
+			Address: customer.AddressTH,
+			TaxID:   customer.TaxID,
+		}
+	}
+	return CustomerInfo{
+		ID:      customer.ID,
+		Company: customer.NameEN,
+		Branch:  customer.BranchEN,
+		Address: customer.AddressEN,
+		TaxID:   customer.TaxID,
+	}
+}
