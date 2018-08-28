@@ -1,6 +1,7 @@
 package model
 
 import (
+	"regexp"
 	"time"
 )
 
@@ -18,4 +19,34 @@ type CustomerInfo struct {
 	TaxID       string    `json:"taxid"`
 	CreatedTime time.Time `json:"createdTime"`
 	UpdatedTime time.Time `json:"updatedTime"`
+}
+type Customer struct {
+	ID          int
+	NameTH      string
+	NameEN      string
+	BranchTH    string
+	BranchEN    string
+	AddressTH   string
+	AddressEN   string
+	TaxID       string
+	CreatedTime time.Time
+	UpdatedTime time.Time
+}
+
+func (newCustomer NewCustomer) ToCustomerModel() Customer {
+	isThaiWord, _ := regexp.MatchString("[ก-ฮ]+", newCustomer.Company)
+	if isThaiWord {
+		return Customer{
+			NameTH:    newCustomer.Company,
+			BranchTH:  newCustomer.Branch,
+			AddressTH: newCustomer.Address,
+			TaxID:     newCustomer.TaxID,
+		}
+	}
+	return Customer{
+		NameEN:    newCustomer.Company,
+		BranchEN:  newCustomer.Branch,
+		AddressEN: newCustomer.Address,
+		TaxID:     newCustomer.TaxID,
+	}
 }
