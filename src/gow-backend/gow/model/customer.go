@@ -54,18 +54,22 @@ func (newCustomer NewCustomer) ToCustomerModel() Customer {
 func (customer Customer) ToCustomerInfo() CustomerInfo {
 	if customer.NameTH != "" {
 		return CustomerInfo{
-			ID:      customer.ID,
-			Company: customer.NameTH,
-			Branch:  customer.BranchTH,
-			Address: customer.AddressTH,
-			TaxID:   customer.TaxID,
+			ID:          customer.ID,
+			Company:     customer.NameTH,
+			Branch:      customer.BranchTH,
+			Address:     customer.AddressTH,
+			TaxID:       customer.TaxID,
+			CreatedTime: customer.CreatedTime,
+			UpdatedTime: customer.UpdatedTime,
 		}
 	}
 	return CustomerInfo{
-		ID:      customer.ID,
-		Company: customer.NameEN,
-		Branch:  customer.BranchEN,
-		Address: customer.AddressEN,
-		TaxID:   customer.TaxID,
+		ID:          customer.ID,
+		Company:     customer.NameEN,
+		Branch:      customer.BranchEN,
+		Address:     customer.AddressEN,
+		TaxID:       customer.TaxID,
+		CreatedTime: customer.CreatedTime,
+		UpdatedTime: customer.UpdatedTime,
 	}
 }
