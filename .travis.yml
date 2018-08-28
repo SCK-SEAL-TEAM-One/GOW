@@ -14,7 +14,8 @@ services:
 before_install:
   - mysql < $HOME/gopath/src/github.com/SCK-SEAL-TEAM-One/GOW/src/gow-backend/sql/gow.sql
 install:
-  - apt-get install -y nodejs
+  - nvm install 8.0.0
+  - nvm use 8.0.0
   - npm install -g newman
   - go get golang.org/x/tools/cmd/cover
   - go get github.com/mattn/goveralls
