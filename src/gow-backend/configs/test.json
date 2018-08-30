@@ -1,8 +1,0 @@
-{
-    "mysql": {
-        "username":"root",
-        "password":"",
-        "database":"GOW"
-    },
-    "port": "3000"
-}

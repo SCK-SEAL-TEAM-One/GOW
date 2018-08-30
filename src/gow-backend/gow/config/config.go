@@ -1,20 +1,21 @@
 package config
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"os"
+
+	"gopkg.in/yaml.v2"
 )
 
 type Config struct {
-	Mysql Mysql  `json:"mysql"`
-	Port  string `json:"port"`
+	Mysql Mysql  `json:"mysql" yaml:"mysql"`
+	Port  string `json:"port" yaml:"port"`
 }
 type Mysql struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-	Database string `json:"database"`
+	Username string `json:"username" yaml:"username"`
+	Password string `json:"password" yaml:"password"`
+	Database string `json:"database" yaml:"database"`
 }
 
 func (m Mysql) GetURI() string {
@@ -28,11 +29,11 @@ func SetupConfig() (Config, error) {
 		environment = os.Getenv("ENV")
 	}
 
-	configFile, err := ioutil.ReadFile(fmt.Sprintf("../configs/%s.json", environment))
+	configFile, err := ioutil.ReadFile(fmt.Sprintf("../configs/%s.yml", environment))
 	if err != nil {
 		fmt.Printf("cannot read config file %s", err)
 		return config, err
 	}
-	err = json.Unmarshal(configFile, &config)
+	err = yaml.Unmarshal(configFile, &config)
 	return config, err
 }
