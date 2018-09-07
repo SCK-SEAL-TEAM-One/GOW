@@ -1,0 +1,19 @@
+{
+    "companyId": 1,
+    "customerId": 3,
+    "contact": {
+        "name": "Nopparat Slisatkorn",
+        "email": "nopparat.slisatkorn@krungsri.com",
+        "phoneNumber": ""
+    },
+    "projectName": "โครงการ 3 Days Software Testing in Action Workshop",
+    "orders": [
+        {
+            "orderCourse": "ค่าฝึกอบรม Software Testing in Action จำนวน 3 วัน วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561",
+            "amount": 1,
+            "pricePerUnit": "100,000.00",
+            "price": "100,000.00"
+        }
+    ],
+    "includeVAT": false
+}
