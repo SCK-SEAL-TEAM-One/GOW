@@ -12,3 +12,8 @@ type QuotationServiceMySQL struct {
 func (quotationServiceMySQL QuotationServiceMySQL) CreateQuotation(model.QuotationForm) (model.QuotationInfo, error) {
 	return model.QuotationInfo{}, nil
 }
+
+func CalculatePrice(amount int, pricePerUnit float64) float64 {
+	price := float64(amount) * pricePerUnit
+	return price
+}
