@@ -83,3 +83,15 @@ func Test_CreateQuotation_Input_QuotationForm_Should_Be_QuotationInfo(t *testing
 		t.Errorf("expect %v but got it %v", len(expectedQuotation.Orders), len(createdQuotation.Orders))
 	}
 }
+
+func Test_CalculatePrice_Input_Amount_And_PricePerUnit_Should_Be_Price(t *testing.T) {
+	expectedPrice := 100000.00
+	amount := 1
+	pricePerUnit := 100000.00
+
+	actualPrice := CalculatePrice(amount, pricePerUnit)
+
+	if expectedPrice != actualPrice {
+		t.Errorf("expect %f but got %f", expectedPrice, actualPrice)
+	}
+}
