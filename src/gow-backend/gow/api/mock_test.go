@@ -44,3 +44,13 @@ func (m mockCompanyService) ListCompanies() ([]model.CompanyInfo, error) {
 	json.Unmarshal(readFlie, &companies)
 	return companies, nil
 }
+
+type mockQuotationService struct {
+}
+
+func (m mockQuotationService) CreateQuotation(model.QuotationForm) (model.QuotationInfo, error) {
+	readFlie, _ := ioutil.ReadFile("quotationInfo.json")
+	var quotationInfo model.QuotationInfo
+	json.Unmarshal(readFlie, &quotationInfo)
+	return quotationInfo, nil
+}

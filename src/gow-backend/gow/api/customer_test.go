@@ -20,7 +20,7 @@ func Test_CreateCustomerHandler_Input_TN_Corporation_Should_Be_Status_201_With_T
 	api := CustomerAPI{
 		CustomerService: &mockGetCustomer,
 	}
-	testRoute := route.NewRoute(CompanyAPI{}, api)
+	testRoute := route.NewRoute(CompanyAPI{}, api, QuotationAPI{})
 
 	testRoute.ServeHTTP(writer, request)
 	response := writer.Result()
@@ -44,7 +44,7 @@ func Test_GetAllCustomerHandler_Should_Be_CustomerInfo(t *testing.T) {
 	api := CustomerAPI{
 		CustomerService: &mockGetCustomer,
 	}
-	testRoute := route.NewRoute(CompanyAPI{}, api)
+	testRoute := route.NewRoute(CompanyAPI{}, api, QuotationAPI{})
 
 	testRoute.ServeHTTP(writer, request)
 	response := writer.Result()

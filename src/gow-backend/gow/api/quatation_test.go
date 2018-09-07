@@ -14,8 +14,10 @@ func Test_CreateQuotationHandler_Input_RequestQuotationForm_Should_Be_Status_201
 	requestQuotationFormData, _ := ioutil.ReadFile("quotationForm.json")
 	request := httptest.NewRequest("POST", "/api/v1/quotation", bytes.NewBuffer(requestQuotationFormData))
 	writer := httptest.NewRecorder()
-
-	testRoute := route.NewRoute(CompanyAPI{}, CustomerAPI{})
+	quotationAPI := QuotationAPI{
+		QuotationService: &mockQuotationService{},
+	}
+	testRoute := route.NewRoute(CompanyAPI{}, CustomerAPI{}, quotationAPI)
 
 	testRoute.ServeHTTP(writer, request)
 

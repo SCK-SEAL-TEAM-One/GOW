@@ -10,12 +10,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func NewRoute(companyApi apiLibrary.CompanyAPI, customerApi apiLibrary.CustomerAPI) *gin.Engine {
+func NewRoute(companyApi apiLibrary.CompanyAPI, customerApi apiLibrary.CustomerAPI, quotationApi apiLibrary.QuotationAPI) *gin.Engine {
 	route := gin.Default()
 	route.POST("api/v1/customers", customerApi.CreateCustomerHandler)
 	route.GET("api/v1/customers", customerApi.GetAllCustomerHandler)
 	route.POST("api/v1/companies", companyApi.CreateCompanyHandler)
 	route.GET("api/v1/companies", companyApi.GetAllCompaniesHandler)
+	route.POST("api/v1/quotation", quotationApi.CreateQuotationHandler)
 	route.GET("/health", func(c *gin.Context) {
 
 		startTime := time.Now()

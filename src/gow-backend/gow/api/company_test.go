@@ -21,7 +21,7 @@ func Test_CreateCompanyHandler_Input_Siamchamnankit_Should_Be_Status_201_And_Com
 	CompanyAPI := CompanyAPI{
 		CompanyService: &companyService,
 	}
-	testRoute := route.NewRoute(CompanyAPI, CustomerAPI{})
+	testRoute := route.NewRoute(CompanyAPI, CustomerAPI{}, QuotationAPI{})
 
 	testRoute.ServeHTTP(writer, request)
 
@@ -45,7 +45,7 @@ func Test_GetAllCompaniesHandler_Should_Be_CompanyInfo(t *testing.T) {
 	api := CompanyAPI{
 		CompanyService: &mockGetcompanies,
 	}
-	testRoute := route.NewRoute(api, CustomerAPI{})
+	testRoute := route.NewRoute(api, CustomerAPI{}, QuotationAPI{})
 
 	testRoute.ServeHTTP(writer, request)
 
