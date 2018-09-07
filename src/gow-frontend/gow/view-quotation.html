@@ -6,114 +6,198 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quotation</title>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 </head>
 
 <body>
-    <div class="header">
-        <h4>บริษัท ชู ฮา ริ จำกัด (สำนักงานใหญ่)</h4>
-        <p>เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร
-            10900</p>
-        <p>เลขประจำตัวผู้เสียภาษีอากร 0-1055-61001-22-1</p>
-        <p>หมายเลขติดต่อ +66979575936</p>
-    </div>
+    <div class="pt-5">
+        <div class="panel-body">
+            <div class="container">
 
-    <div class="container">
-        <div class="row">
-            <h3>ใบเสนอราคา QUOTAION</h3>
-            เลขที่ <span id="quotation_Id">QT256104-101002</span><br>
-            วันที่ <span id="date">5 เมษายน พ.ศ. 2561</span><br>
-            ลูกค้า <span id="customer_name"> บริษัท อยุธยา แคปปิตอล เซอร์วิสเซส จำกัด</span>
-            สาขา <span id="customer_branch">สำนักงานใหญ่ </span><br><br>
-            ที่อยู่ <span id="customer_address">อาคารกรุงศรีเพลินจิต ทาวเวอร์ 550 ถนนเพลินจิต แขวงลุมพินี เขตปทุมวัน
-                กรุงเทพมหานคร</span><br>
-            ถึง <span id="name">Nopparat Slisatkorn</span>
-            อีเมล์ <span id="email">nopparat.slisatkorn@krungsri.com</span><br>
-            เลขประจำตัวผู้เสียภาษีอากร <span id="tax_id">0-1055-37133-56-2</span>
-            หมายเลขติดต่อ <span id="phone"> </span><br>
-        </div>
-        <div class="row">
-            <h4>โครงการ <span id="project"> 3 Days Software Testing in Action Workshop</span></h4><br>
-        </div>
-        <div class="row">
-            <table border="1">
-                <tr>
-                    <th>ลำดับ</th>
-                    <th>รายการ</th>
-                    <th>จำนวน</th>
-                    <th>ราคาต่อหน่วย</th>
-                    <th>จำนวนเงิน</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <span id="customer_address">
-                            ค่าฝึกอบรม Software Testing in Action<br>
-                            จำนวน 3 วัน<br>
-                            วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561
-                        </span>
-                    </td>
-                    <td>
-                        <span id="amount">
-                            1
-                        </span>
-                    </td>
-                    <td>
-                        <span type="text" id="pricePerUnit">
-                            100,000.00
-                        </span>
-                    </td>
-                    <td>
-                        <span type="text" id="price">
-                            100,000.00
-                        </span>
-                    </td>
-                </tr>
-            </table>
-        </div>
+                <div class="header">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2">
+                            <img width="180" height="120" src="shuhari.png">
+                        </div>
 
-        <div class="row">
-            <table border="1">
-                <tr>
-                    <td>
-                        <b>เงื่อนไขการชำระเงิน</b><br>
-                        <li>ชำระเงินเต็มจำนวนหลังวันฝึกอบรมเรียบร้อย</li>
-                        <li>บริษัทฯสามารถหักภาษี ณ ที่จ่าย 3% ได้</li>
-                    </td>
+                        <div class="col-md-8 col-sm-8">
+                            <b>บริษัท ชู ฮา ริ จำกัด (สำนักงานใหญ่)</b><br>
+                            เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล
+                            เขตจตุจักร กรุงเทพมหานคร 10900<br>
+                            เลขประจำตัวผู้เสียภาษีอากร 0-1055-61001-22-1<br>
+                            หมายเลขติดต่อ +66979575936
+                        </div>
 
-                    <td>
-                        <p>จำนวนเงินรวม <span id="totalprice">100,000.00</span></p>
-                        <p>ส่วนลด <span type="text" id="discount">0.00 </span></p>
-                        <p>จำนวนเงินหลังหักส่วนลด <span id="price_after_discount">100,000.00</span></p>
-                        <p>ภาษีมูลค่าเพิ่ม 7%</p>
-                        <span id="tax_price">7,000.00</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="thaiprice">หนึ่งแสนเจ็ดพันบาทถ้วน</td>
-                    <td><b>จำนวนเงินรวมทั้งสิน <span id="nettotal_price">107,000.00</span></b></td>
-                </tr>
+                        <div class="col-md-2 col-sm-2">
+                        </div>
+                    </div>
+                </div><br>
 
-            </table>
-        </div><br><br><br>
-        <div class="row">
+                <div class="row">
+                    <div class="col-sm-7 col-md-7">
+                        <h3>ใบเสนอราคา QUOTAION</h3><br>
+                        <label class="form-label">ลูกค้า</label>
+                        <span class="col-sm" id="customer_name"> บริษัท อยุธยา แคปปิตอล เซอร์วิสเซส จำกัด</span><br>
+                    </div>
 
-            <div id="div1">
-                ผู้เสนอราคา <br>
-                <br><br><br>
-                ประธาน ด่านสกุลเจริญกิจ<br>
-                5 เมษายน พ.ศ. 2561
-            </div>
-            <div id="div2">
-                ผู้อนุมัติ <br>
-                <br><br><br>
-                ประธาน ด่านสกุลเจริญกิจ<br>
-                5 เมษายน พ.ศ. 2561
-            </div>
-            <div id="div3">
-                ผู้มีอำนาจลงนาม <br>
-                <br><br><br>
-                ประธาน ด่านสกุลเจริญกิจ<br>
-                5 เมษายน พ.ศ. 2561
+                    <div class="col-sm-3 col-md-3">
+                        <div class="row">
+                            <label class="form-label">เลขที่</label>
+                            <span class="col-sm" id="quotation_Id">QT256104-101002</span><br>
+                        </div>
+
+                        <div class="row">
+                            <label class="form-label">วันที่</label>
+                            <span class="col-sm" id="date">5 เมษายน พ.ศ. 2561</span><br>
+                        </div>
+
+                        <div class="row">
+                            <label class="form-label">สาขา</label>
+                            <span class="col-sm" id="customer_branch">สำนักงานใหญ่ </span><br><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 col-md-8">
+                        <label class="form-label">ที่อยู่</label>
+                        <span class="col-sm" id="customer_address">อาคารกรุงศรีเพลินจิต ทาวเวอร์ 550 ถนนเพลินจิต
+                            แขวงลุมพินี เขตปทุมวัน กรุงเทพมหานคร
+                        </span><br>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-7 col-md-7">
+                        <label class="form-label">ถึง</label>
+                        <span class="col-sm" id="name">Nopparat Slisatkorn</span>
+                    </div>
+
+                    <div class="col-sm-3 col-md-5">
+                        <label class="form-label">อีเมล์</label>
+                        <span class="col-sm" id="email">nopparat.slisatkorn@krungsri.com</span><br>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-7 col-md-7">
+                        <label class="form-label">เลขประจำตัวผู้เสียภาษีอากร</label>
+                        <span class="col-sm" id="tax_id">0-1055-37133-56-2</span>
+                    </div>
+
+                    <div class="col-sm-3 col-md-5">
+                        <label class="form-label">หมายเลขติดต่อ</label>
+                        <span class="form-label" id="phone"> </span><br>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-3 col-md-3">
+                </div>
+
+                <div class="row">
+                    <b><label class="form-label">โครงการ</label>
+                        <span class="col-sm" id="project"> 3 Days Software Testing in Action Workshop</span></b>
+                </div>
+
+
+                <div class="row">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>
+                                    <p align="center" style="margin: 0px">รายการ</p>
+                                </th>
+                                <th>จำนวน</th>
+                                <th>ราคาต่อหน่วย</th>
+                                <th>จำนวนเงิน</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <span id="customer_address">
+                                        ค่าฝึกอบรม Software Testing in Action<br>
+                                        จำนวน 3 วัน<br>
+                                        วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561
+                                    </span>
+                                </td>
+                                <td>
+                                    <span id="amount">
+                                        1
+                                    </span>
+                                </td>
+                                <td>
+                                    <span type="text" id="pricePerUnit">
+                                        100,000.00
+                                    </span>
+                                </td>
+                                <td>
+                                    <span type="text" id="price">
+                                        100,000.00
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <b>เงื่อนไขการชำระเงิน</b><br>
+                                    <li>ชำระเงินเต็มจำนวนหลังวันฝึกอบรมเรียบร้อย</li>
+                                    <li>บริษัทฯสามารถหักภาษี ณ ที่จ่าย 3% ได้</li>
+                                </td>
+
+                                <td>
+                                    <p>จำนวนเงินรวม <span id="totalprice">100,000.00</span></p>
+                                    <p>ส่วนลด <span type="text" id="discount">0.00 </span></p>
+                                    <p>จำนวนเงินหลังหักส่วนลด <span id="price_after_discount">100,000.00</span></p>
+                                    <p>ภาษีมูลค่าเพิ่ม 7%</p>
+                                    <span id="tax_price">7,000.00</span>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td id="thaiprice">
+                                <b>
+                                    <p align="center" style="margin: 0px">หนึ่งแสนเจ็ดพันบาทถ้วน</p>
+                                </b>
+                            </td>
+                            <td><b>จำนวนเงินรวมทั้งสิน <span id="nettotal_price">107,000.00</span></b></td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <p align="center" style="margin: 0px">ผู้เสนอราคา</p>
+                        <br><br>
+                        <p align="center" style="margin: 0px">ประธาน ด่านสกุลเจริญกิจ</p>
+                        <p align="center" style="margin: 0px">5 เมษายน พ.ศ. 2561</p>
+                    </div>
+
+                    <div class="col-sm-4 col-md-4">
+                        <p align="center" style="margin: 0px">ผู้อนุมัติ</p>
+                        <br><br>
+                        <p align="center" style="margin: 0px">ประธาน ด่านสกุลเจริญกิจ</p>
+                        <p align="center" style="margin: 0px">5 เมษายน พ.ศ. 2561</p>
+                    </div>
+
+                    <div class="col-sm-4 col-md-4">
+                        <p align="center" style="margin: 0px">ผู้มีอำนาจลงนาม</p>
+                        <br><br>
+                        <p align="center" style="margin: 0px">ประธาน ด่านสกุลเจริญกิจ</p>
+                        <p align="center" style="margin: 0px">5 เมษายน พ.ศ. 2561</p>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -121,6 +205,5 @@
 </body>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/duration.js"></script>
 
 </html>
