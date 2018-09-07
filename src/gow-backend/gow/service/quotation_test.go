@@ -95,3 +95,15 @@ func Test_CalculatePrice_Input_Amount_And_PricePerUnit_Should_Be_Price(t *testin
 		t.Errorf("expect %f but got %f", expectedPrice, actualPrice)
 	}
 }
+
+func Test_CalculateDiscount_Input_Price_And_Discount_Should_Be_PriceAfterDiscount(t *testing.T) {
+	expectedPriceAfterDiscount := 100000.00
+	price := 100000.00
+	discount := 0.00
+
+	actualPriceAfterDiscount := CalculateDiscount(price, discount)
+
+	if expectedPriceAfterDiscount != actualPriceAfterDiscount {
+		t.Errorf("expect %f but got %f", expectedPriceAfterDiscount, actualPriceAfterDiscount)
+	}
+}
