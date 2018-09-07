@@ -53,3 +53,9 @@ func (m MockCustomerRepository) GetAll() ([]model.CustomerInfo, error) {
 		},
 		nil
 }
+
+type MockQuotationRepository struct{}
+
+func (mock MockQuotationRepository) InsertQuotation(quotationForm model.QuotationForm) (int, error) {
+	return 1, nil
+}

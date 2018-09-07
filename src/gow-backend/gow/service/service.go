@@ -13,3 +13,7 @@ type CompanyService interface {
 	CreateNewCompany(model.NewCompany) (model.CompanyInfo, error)
 	ListCompanies() ([]model.CompanyInfo, error)
 }
+
+type QuotationService interface {
+	CreateQuotation(model.QuotationForm) (model.QuotationInfo, error)
+}

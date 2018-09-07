@@ -1,11 +1,11 @@
 package model
 
 type QuotationForm struct {
-	CompanyID   string  `json:"companyId"`
-	CustomerID  string  `json:"customerId"`
+	CompanyID   int     `json:"companyId"`
+	CustomerID  int     `json:"customerId"`
 	Contact     Contact `json:"contact"`
 	ProjectName string  `json:"projectName"`
-	orders      []Order `json:"orders"`
+	Orders      []Order `json:"orders"`
 	IncludeVAT  bool    `json:"includeVAT"`
 }
 

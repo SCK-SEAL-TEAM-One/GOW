@@ -1,7 +1,14 @@
 package service
 
-import "gow/model"
+import (
+	"gow/model"
+	"gow/repository"
+)
 
-type QuotationService interface {
-	CreateQuotation(model.QuotationForm) (model.QuotationInfo, error)
+type QuotationServiceMySQL struct {
+	QuotationRepository repository.QuotationRepository
+}
+
+func (quotationServiceMySQL QuotationServiceMySQL) CreateQuotation(model.QuotationForm) (model.QuotationInfo, error) {
+	return model.QuotationInfo{}, nil
 }
