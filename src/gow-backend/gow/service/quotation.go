@@ -17,3 +17,8 @@ func CalculatePrice(amount int, pricePerUnit float64) float64 {
 	price := float64(amount) * pricePerUnit
 	return price
 }
+
+func CalculateDiscount(price, discount float64) float64 {
+	priceAfterDiscount := price - discount
+	return priceAfterDiscount
+}
