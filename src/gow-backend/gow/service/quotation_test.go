@@ -107,3 +107,15 @@ func Test_CalculateDiscount_Input_Price_And_Discount_Should_Be_PriceAfterDiscoun
 		t.Errorf("expect %f but got %f", expectedPriceAfterDiscount, actualPriceAfterDiscount)
 	}
 }
+
+func Test_CalculateVat_Input_Price_And_VatRate_Should_Be_Vat(t *testing.T) {
+	expectedVat := 7000.00
+	price := 100000.00
+	vatRate := 7.00
+
+	actualVat := CalculateVat(price, vatRate)
+
+	if expectedVat != actualVat {
+		t.Errorf("expect %f but got %f", expectedVat, actualVat)
+	}
+}
