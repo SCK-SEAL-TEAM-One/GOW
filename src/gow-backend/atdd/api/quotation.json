@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "c2802624-6b70-44e2-a9f7-0c4cab9d7535",
+		"name": "quotation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "requestQuotation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "67fd29a9-6016-4c69-8651-0a8957ef3396",
+						"type": "text/javascript",
+						"exec": [
+							"var quotation = pm.response.json();",
+							"pm.test(\"Check company\", function () {",
+							"    pm.expect(quotation.company.company).to.eql(\"บริษัท ชู ฮา ริ จำกัด\");",
+							"});",
+							"",
+							"pm.test(\"Check branch company\", function () {",
+							"    pm.expect(quotation.company.branch).to.eql(\"สำนักงานใหญ่\");",
+							"});",
+							"",
+							"pm.test(\"Check address company\", function () {",
+							"    pm.expect(quotation.company.address).to.eql(\"เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\");",
+							"});",
+							"",
+							"pm.test(\"Check tax ID company\", function () {",
+							"    pm.expect(quotation.company.taxid).to.eql(\"0105561001221\");",
+							"});",
+							"",
+							"pm.test(\"Check phone number company\", function () {",
+							"    pm.expect(quotation.company.phoneNumber).to.eql(\"+66979575936\");",
+							"});",
+							"",
+							"pm.test(\"Check Customer\", function () {",
+							"    pm.expect(quotation.customer.company).to.eql(\"บริษัท อยุธยา แคปปิตอล เซอร์วิสเซส จำกัด\");",
+							"});",
+							"",
+							"pm.test(\"Check branch customer\", function () {",
+							"    pm.expect(quotation.customer.branch).to.eql(\"สำนักงานใหญ่\");",
+							"});",
+							"",
+							"pm.test(\"Check address customer\", function () {",
+							"    pm.expect(quotation.customer.address).to.eql(\"อาคารกรุงศรีเพลินจิต ทาวเวอร์ 550 ถนนเพลินจิต แขวงเขตปทุมวัน กรุงเทพมหานคร\");",
+							"});",
+							"",
+							"pm.test(\"Check tax ID customer\", function () {",
+							"    pm.expect(quotation.customer.taxid).to.eql(\"0105537133562\");",
+							"});",
+							"",
+							"pm.test(\"Check Contact name\", function () {",
+							"    pm.expect(quotation.contact.name).to.eql(\"Nopparat Slisatkorn\");",
+							"});",
+							"",
+							"pm.test(\"Check Contact emil\", function () {",
+							"    pm.expect(quotation.contact.email).to.eql(\"nopparat.slisatkorn@krungsri.com\");",
+							"});",
+							"",
+							"pm.test(\"Check Contact phone number\", function () {",
+							"    pm.expect(quotation.contact.phoneNumber).to.eql(\"\");",
+							"});",
+							"",
+							"pm.test(\"Check Project name\", function () {",
+							"    pm.expect(quotation.projectName).to.eql(\"โครงการ 3 Days Software Testing in Action Workshop\");",
+							"});",
+							"",
+							"pm.test(\"Check Order Course\", function () {",
+							"    pm.expect(quotation.orders[0].orderCourse).to.eql(\"ค่าฝึกอบรม Software Testing in Action จำนวน 3 วัน วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561\");",
+							"});",
+							"",
+							"pm.test(\"Check order amount\", function () {",
+							"    pm.expect(quotation.orders[0].amount).to.eql(\"1\");",
+							"});",
+							"",
+							"pm.test(\"Check order price per unit\", function () {",
+							"    pm.expect(quotation.orders[0].pricePerUnit).to.eql(\"100,000.00\");",
+							"});",
+							"",
+							"pm.test(\"Check order price\", function () {",
+							"    pm.expect(quotation.orders[0].price).to.eql(\"100,000.00\");",
+							"});",
+							"",
+							"pm.test(\"Check Payment discount\", function () {",
+							"    pm.expect(quotation.payment.discount).to.eql(\"0.00\");",
+							"});",
+							"",
+							"pm.test(\"Check price after discount\", function () {",
+							"    pm.expect(quotation.payment.priceAfterDiscount).to.eql(\"100,000.00\");",
+							"});",
+							"",
+							"pm.test(\"Check VAT\", function () {",
+							"    pm.expect(quotation.payment.vat).to.eql(\"7,000.00\");",
+							"});",
+							"",
+							"pm.test(\"Check Net total price\", function () {",
+							"    pm.expect(quotation.payment.netTotalPrice).to.eql(\"107,000.00\");",
+							"});",
+							"",
+							"pm.test(\"Check Net total price thai\", function () {",
+							"    pm.expect(quotation.payment.totalPriceThai).to.eql(\"หนึ่งแสนเจ็ดพันบาทถ้วน\");",
+							"});",
+							"",
+							"pm.test(\"Check Include VAT\", function () {",
+							"    pm.expect(quotation.includeVAT).to.eql(\"false\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"companyId\":1,\n    \"customerId\": 3,\n    \"contact\":{\n        \"name\":\"Nopparat Slisatkorn\",\n        \"email\":\"nopparat.slisatkorn@krungsri.com\",\n        \"phoneNumber\":\"\"\n    },\n    \"projectName\":\"โครงการ 3 Days Software Testing in Action Workshop\",\n    \"orders\": [\n        {\n          \"orderCourse\": \"ค่าฝึกอบรม Software Testing in Action จำนวน 3 วัน วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561\",\n          \"amount\": 1,\n          \"pricePerUnit\":\"100,000.00\",\n          \"price\":\"100,000.00\"\n        }\n    ],\n    \"includeVAT\":false\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/api/quotation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"api",
+						"quotation"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
