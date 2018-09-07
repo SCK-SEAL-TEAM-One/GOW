@@ -11,12 +11,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d46d8066-63c3-440f-b736-e9f8e8bc8ffb",
+						"id": "67fd29a9-6016-4c69-8651-0a8957ef3396",
 						"type": "text/javascript",
 						"exec": [
 							"var quotation = pm.response.json();",
 							"pm.test(\"Check company\", function () {",
-							"    pm.expect(quotation.company.company).to.eql(\"บริษัทสยามชำนาญกิจ จำกัด\");",
+							"    pm.expect(quotation.company.company).to.eql(\"บริษัท ชู ฮา ริ จำกัด\");",
 							"});",
 							"",
 							"pm.test(\"Check branch company\", function () {",
@@ -24,11 +24,11 @@
 							"});",
 							"",
 							"pm.test(\"Check address company\", function () {",
-							"    pm.expect(quotation.company.address).to.eql(\"เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1001 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\");",
+							"    pm.expect(quotation.company.address).to.eql(\"เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\");",
 							"});",
 							"",
 							"pm.test(\"Check tax ID company\", function () {",
-							"    pm.expect(quotation.company.taxid).to.eql(\"0105556042151\");",
+							"    pm.expect(quotation.company.taxid).to.eql(\"0105561001221\");",
 							"});",
 							"",
 							"pm.test(\"Check phone number company\", function () {",
