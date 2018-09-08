@@ -6,35 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quotation</title>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 </head>
 
 <body>
-    <div class="header">
-        <h4>บริษัท ชู ฮา ริ จำกัด (สำนักงานใหญ่)</h4>
-        <p>เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร
-            10900</p>
-        <p>เลขประจำตัวผู้เสียภาษีอากร 0-1055-61001-22-1</p>
-        <p>หมายเลขติดต่อ +66979575936</p>
-    </div>
-
     <div class="container">
+        <div class="header">
+            <div class="row">
+                <div class="col-sm-2">
+                    ภาพ
+                </div>
+                <div class="col-sm">
+                    <h4>บริษัท ชู ฮา ริ จำกัด (สำนักงานใหญ่)</h4>
+                    <p>เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร
+                        10900
+                    </p>
+                    <p>เลขประจำตัวผู้เสียภาษีอากร 0-1055-61001-22-1</p>
+                    <p>หมายเลขติดต่อ +66979575936</p>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
-            <h3>ใบเสนอราคา QUOTAION</h3>
-            เลขที่ <span id="quotation_Id">QT256104-101002</span><br>
-            วันที่ <input type="text" id="date"><br>
-            ลูกค้า <input type="text" id="customer_name">
-            สาขา <input type="text" id="customer_branch"><br><br>
-            ที่อยู่ <textarea rows="4" cols="50" id="customer_address"></textarea><br>
-            ถึง <input type="text" id="name">
-            อีเมล์ <input type="text" id="email"><br>
-            เลขประจำตัวผู้เสียภาษีอากร <input type="text" id="tax_id">
-            หมายเลขติดต่อ <input type="text" id="phone"><br>
+            <div class="col-sm-9">
+                <h3>ใบเสนอราคา QUOTAION</h3>
+            </div>
+
+            <div class="col-sm">
+                <div class="row">
+                    <label class="form-label">เลขที่</label>
+                    <span class="col-sm" id="quotation_Id"> QT256104-101002</span>
+                </div>
+                <div class="row">
+                    <label>วันที่ </label>
+                    <div class="col-sm form-group">
+                        <input class="form-control" type="text" id="date">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form>
+            <div class="form-row">
+                <label class="form-label">ลูกค้า</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="text" id="customer_name">
+                </div>
+                <label class="form-label">สาขา</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="text" id="customer_branch">
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="form-label">ที่อยู่</label>
+                <div class="col-sm-5">
+                    <textarea class="form-control" rows="3" cols="53" id="customer_address"></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <label class="form-label">ถึง</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="text" id="name">
+                </div>
+                <label class="form-label">อีเมล์</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="email" id="email">
+                </div>
+            </div>
+            <div class="form-row">
+                <label>เลขประจำตัวผู้เสียภาษีอากร</label>
+                <div class="col-sm-5 form-group">
+                    <input class="form-control" type="text" id="tax_id">
+                </div>
+                <div class="col-sm-1"></div>
+                <label>หมายเลขติดต่อ </label>
+                <div class="col-sm form-group">
+                    <input class="form-control" type="text" id="phone">
+                </div>
+            </div>
+        </form>
+
+        <div class="form-row">
+            <label><h4>โครงการ</h4></label>
+            <div class="col-sm-5 form-group">
+                <input class="form-control" type="text" id="project">
+            </div>
         </div>
         <div class="row">
-            <h4>โครงการ <input type="text" id="project"></h4><br>
-        </div>
-        <div class="row">
-            <table border="1">
+            <table class="table table-bordered">
                 <tr>
                     <th>ลำดับ</th>
                     <th>รายการ</th>
@@ -44,31 +102,31 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><textarea rows="4" cols="50" id="customer_address"></textarea></td>
-                    <td><input type="text" id="amount"></td>
-                    <td><input type="text" id="pricePerUnit"></td>
-                    <td><input type="text" id="price"></td>
+                    <td><textarea class="form-control" rows="4" cols="50" id="customer_address"></textarea></td>
+                    <td><input class="form-control" type="text" id="amount"></td>
+                    <td><input class="form-control" type="text" id="pricePerUnit"></td>
+                    <td><input class="form-control" type="text" id="price"></td>
                 </tr>
             </table>
         </div>
 
         <div class="row">
-            <table border="1">
+            <table class="table table-bordered">
                 <tr>
                     <td>
                         <b>เงื่อนไขการชำระเงิน</b><br>
                         <li>ชำระเงินเต็มจำนวนหลังวันฝึกอบรมเรียบร้อย</li>
                         <li>บริษัทฯสามารถหักภาษี ณ ที่จ่าย 3% ได้</li>
-                        
+
                     </td>
-            
+
                     <td>
                         <p>จำนวนเงินรวม <span id="totalprice"></span></p>
-                        <p>ส่วนลด <input type="text" id="discount"></p>
+                        <p>ส่วนลด <input class="form-control" type="text" id="discount"></p>
                         <p>จำนวนเงินหลังหักส่วนลด <span id="price_after_discount"></span></p>
                         <p>ภาษีมูลค่าเพิ่ม 7%</p>
-                        <input type="radio" id="vat" value="income"> Income <br>
-                        <input type="radio" id="vat" value="outcome"> Outcome <br><br>
+                        <input class="form-control" type="radio" id="vat" value="income"> Income <br>
+                        <input class="form-control" type="radio" id="vat" value="outcome"> Outcome <br><br>
                     </td>
                 </tr>
                 <tr>
@@ -79,7 +137,6 @@
             </table>
         </div>
     </div>
-
 </body>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
