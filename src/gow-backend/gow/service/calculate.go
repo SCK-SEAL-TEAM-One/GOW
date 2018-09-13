@@ -97,3 +97,7 @@ func ConvertNumberToThaiCharactor(numberString string) string {
 	}
 	return thaiCharactorInteger
 }
+
+func CalculateNetTotalPrice(totalPrice, vatFee float64) float64 {
+	return totalPrice + vatFee
+}
