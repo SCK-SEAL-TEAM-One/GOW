@@ -7,6 +7,7 @@ type QuotationForm struct {
 	ProjectName string  `json:"projectName"`
 	Orders      []Order `json:"orders"`
 	IncludeVAT  bool    `json:"includeVAT"`
+	Discount    string  `json:"payment>discount`
 }
 
 type Contact struct {
