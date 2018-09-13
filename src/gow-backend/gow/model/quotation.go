@@ -25,6 +25,8 @@ type Order struct {
 	Amount       int    `json:"amount"`
 	PricePerUnit string `json:"pricePerUnit"`
 	Price        string `json:"price"`
+	createdTime  time.Time
+	updatedTime  time.Time
 }
 
 type QuotationInfo struct {

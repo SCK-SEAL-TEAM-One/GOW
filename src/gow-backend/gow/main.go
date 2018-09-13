@@ -30,23 +30,40 @@ func main() {
 	customerRepository := repository.CustomerRepositoryMySQL{
 		DBConnection: db,
 	}
-	customerService := service.CustomerServiceMySQL{
-		CustomerRepository: &customerRepository,
-	}
-	customerAPI := api.CustomerAPI{
-		CustomerService: &customerService,
-	}
-
 	companyRepository := repository.CompanyRepositoryMySQL{
 		DBConnection: db,
+	}
+	quotationRepository := repository.QuotationRepositoryMySQL{
+		DBConnection: db,
+	}
+	orderRepository := repository.OrderRepositoryMySQL{
+		DBConnection: db,
+	}
+
+	customerService := service.CustomerServiceMySQL{
+		CustomerRepository: &customerRepository,
 	}
 	companyService := service.CompanyServiceMySQL{
 		CompanyRepository: &companyRepository,
 	}
+
+	quotationService := service.QuotationServiceMySQL{
+		QuotationRepository: &quotationRepository,
+		OrderRepository:     &orderRepository,
+		CompanyService:      &companyService,
+		CustomerService:     &customerService,
+	}
+
+	customerAPI := api.CustomerAPI{
+		CustomerService: &customerService,
+	}
 	companyAPI := api.CompanyAPI{
 		CompanyService: &companyService,
 	}
-	route := route.NewRoute(companyAPI, customerAPI, api.QuotationAPI{})
+	quotationAPI := api.QuotationAPI{
+		QuotationService: &quotationService,
+	}
+	route := route.NewRoute(companyAPI, customerAPI, quotationAPI)
 	route.Run(fmt.Sprintf(":%s", config.Port))
 
 }

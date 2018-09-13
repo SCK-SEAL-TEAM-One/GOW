@@ -60,12 +60,22 @@ func (m MockCustomerRepository) GetAll() ([]model.CustomerInfo, error) {
 
 type MockQuotationRepository struct{}
 
-func (mock MockQuotationRepository) InsertQuotation(quotationForm model.QuotationForm, model.Payment) (int, error) {
-	return 1, nil
+func (mock MockQuotationRepository) InsertQuotation(model.QuotationForm, model.Payment, float64) (int64, error) {
+	return int64(1), nil
 }
 
-func (mock MockQuotationRepository) GetQuotationByID(int) (model.Quotation, error) {
+func (mock MockQuotationRepository) GetQuotationByID(int64) (model.Quotation, error) {
 	return model.Quotation{}, nil
+}
+
+type MockOrderRepository struct{}
+
+func (mock MockOrderRepository) InsertOrder(model.QuotationForm, int64) (bool, error) {
+	return true, nil
+}
+
+func (mock MockOrderRepository) GetByQuotationID(string) ([]model.Order, error) {
+	return []model.Order{}, nil
 }
 
 type mockCompanyService struct {

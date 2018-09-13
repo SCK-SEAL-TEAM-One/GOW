@@ -9,6 +9,7 @@ import (
 func Test_CreateQuotation_Input_QuotationForm_Should_Be_QuotationInfo(t *testing.T) {
 	quotationService := QuotationServiceMySQL{
 		QuotationRepository: &MockQuotationRepository{},
+		OrderRepository:     &MockOrderRepository{},
 		CompanyService:      &mockCompanyService{},
 		CustomerService:     &mockCustomerService{},
 	}

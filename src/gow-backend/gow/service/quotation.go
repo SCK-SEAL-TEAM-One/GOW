@@ -9,6 +9,7 @@ import (
 
 type QuotationServiceMySQL struct {
 	QuotationRepository repository.QuotationRepository
+	OrderRepository     repository.OrderRepository
 	CompanyService      CompanyService
 	CustomerService     CustomerService
 }
@@ -40,12 +41,16 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 		TotalPriceThai:     ConvertMoneyToThaiCharactor(netTotalPrice),
 	}
 
-	id, err := quotationService.QuotationRepository.InsertQuotation(quotationForm, payment)
+	quotationID, err := quotationService.QuotationRepository.InsertQuotation(quotationForm, payment, float64(vat))
+	if err != nil {
+		return model.QuotationInfo{}, err
+	}
+	_, err = quotationService.OrderRepository.InsertOrder(quotationForm, quotationID)
 	if err != nil {
 		return model.QuotationInfo{}, err
 	}
 
-	quotation, err := quotationService.QuotationRepository.GetQuotationByID(id)
+	quotation, err := quotationService.QuotationRepository.GetQuotationByID(quotationID)
 	if err != nil {
 		return model.QuotationInfo{}, err
 	}
