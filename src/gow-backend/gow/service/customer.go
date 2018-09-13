@@ -31,3 +31,7 @@ func (customerService CustomerServiceMySQL) ListCustomers() ([]model.CustomerInf
 
 	return customerService.CustomerRepository.GetAll()
 }
+
+func (customerService CustomerServiceMySQL) GetCustomerByID(int) (model.CustomerInfo, error) {
+	return model.CustomerInfo{}, nil
+}

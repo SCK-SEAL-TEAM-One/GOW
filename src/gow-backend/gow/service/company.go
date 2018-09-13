@@ -29,3 +29,7 @@ func (companyService CompanyServiceMySQL) CreateNewCompany(newCompany model.NewC
 func (companyService CompanyServiceMySQL) ListCompanies() ([]model.CompanyInfo, error) {
 	return companyService.CompanyRepository.GetAll()
 }
+
+func (companyService CompanyServiceMySQL) GetCompanyByID(int) (model.CompanyInfo, error) {
+	return model.CompanyInfo{}, nil
+}
