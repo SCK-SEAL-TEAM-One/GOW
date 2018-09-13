@@ -15,5 +15,8 @@
             "price": "100,000.00"
         }
     ],
+    "payment":{
+    	"discount":"0.00"
+    },
     "includeVAT": false
 }
