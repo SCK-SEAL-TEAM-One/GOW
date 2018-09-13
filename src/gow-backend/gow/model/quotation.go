@@ -80,4 +80,6 @@ type Quotation struct {
 	QuotationDate      time.Time
 	VatRate            float64
 	VatIncluded        bool
+	CreatedTime        time.Time
+	UpdatedTime        time.Time
 }

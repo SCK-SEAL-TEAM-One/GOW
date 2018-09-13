@@ -40,7 +40,7 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 		TotalPriceThai:     ConvertMoneyToThaiCharactor(netTotalPrice),
 	}
 
-	id, err := quotationService.QuotationRepository.InsertQuotation(quotationForm)
+	id, err := quotationService.QuotationRepository.InsertQuotation(quotationForm, payment)
 	if err != nil {
 		return model.QuotationInfo{}, err
 	}

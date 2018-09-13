@@ -60,7 +60,7 @@ func (m MockCustomerRepository) GetAll() ([]model.CustomerInfo, error) {
 
 type MockQuotationRepository struct{}
 
-func (mock MockQuotationRepository) InsertQuotation(quotationForm model.QuotationForm) (int, error) {
+func (mock MockQuotationRepository) InsertQuotation(quotationForm model.QuotationForm, model.Payment) (int, error) {
 	return 1, nil
 }
 
