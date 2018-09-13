@@ -1,6 +1,7 @@
 package service_test
 
 import (
+	"gow/model"
 	. "gow/service"
 	"testing"
 )
@@ -61,5 +62,26 @@ func Test_CalculateNetTotalPrice_Input_PriceAfterDiscount_100000_And_VatFee_7000
 
 	if expectedNetTotalPrice != actualNetTotalPrice {
 		t.Errorf("expect %f but got %f", expectedNetTotalPrice, actualNetTotalPrice)
+	}
+}
+
+func Test_CalculateOrdersPrice_Input_Orders_1_100000_Should_Be_TotalPrice_100000(t *testing.T) {
+	expectedTotalPrice := 100000.00
+	orders := []model.Order{
+		{
+			OrderCourse:  "ค่าฝึกอบรม Software Testing in Action จำนวน 3 วัน วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561",
+			Amount:       1,
+			PricePerUnit: "100,000.00",
+			Price:        "100,000.00",
+		},
+	}
+	actualTotalPrice, _ := CalculateOrdersPrice(&orders)
+
+	if expectedTotalPrice != actualTotalPrice {
+		t.Errorf("expect %f but got %f", expectedTotalPrice, actualTotalPrice)
+	}
+
+	if orders[0].Price != "100,000.00" {
+		t.Errorf("expect 100,000.00 but got %s", orders[0].Price)
 	}
 }

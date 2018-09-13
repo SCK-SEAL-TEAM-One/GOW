@@ -3,7 +3,9 @@ package service
 import (
 	"bytes"
 	"fmt"
+	"gow/model"
 	"gow/stringutil"
+	"strconv"
 	"strings"
 )
 
@@ -100,4 +102,19 @@ func ConvertNumberToThaiCharactor(numberString string) string {
 
 func CalculateNetTotalPrice(totalPrice, vatFee float64) float64 {
 	return totalPrice + vatFee
+}
+
+func CalculateOrdersPrice(orders *[]model.Order) (float64, error) {
+	var totalPrice float64
+	for index, order := range *orders {
+		priceWithoutComma := strings.Replace(order.PricePerUnit, ",", "", -1)
+		pricePerUnit, err := strconv.ParseFloat(priceWithoutComma, 64)
+		if err != nil {
+			return 0.00, err
+		}
+		price := CalculatePrice(order.Amount, pricePerUnit)
+		(*orders)[index].Price = AddComma(price)
+		totalPrice += price
+	}
+	return totalPrice, nil
 }

@@ -16,16 +16,9 @@ type QuotationServiceMySQL struct {
 const vat = 7
 
 func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm model.QuotationForm) (model.QuotationInfo, error) {
-	var totalPrice float64
-	for index, order := range quotationForm.Orders {
-		priceWithoutComma := strings.Replace(order.PricePerUnit, ",", "", -1)
-		pricePerUnit, err := strconv.ParseFloat(priceWithoutComma, 64)
-		if err != nil {
-			return model.QuotationInfo{}, err
-		}
-		price := CalculatePrice(order.Amount, pricePerUnit)
-		quotationForm.Orders[index].Price = AddComma(price)
-		totalPrice += price
+	totalPrice, err := CalculateOrdersPrice(&quotationForm.Orders)
+	if err != nil {
+		return model.QuotationInfo{}, err
 	}
 
 	discount := strings.Replace(quotationForm.Discount, ",", "", -1)
@@ -33,11 +26,10 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 	if err != nil {
 		return model.QuotationInfo{}, err
 	}
+
 	priceAfterDiscount := CalculateDiscount(totalPrice, discountFloat)
-
 	taxFee := CalculateVat(priceAfterDiscount, vat)
-
-	netTotalPrice := priceAfterDiscount + taxFee
+	netTotalPrice := CalculateNetTotalPrice(priceAfterDiscount, taxFee)
 
 	payment := model.Payment{
 		TotalPrice:         AddComma(totalPrice),
