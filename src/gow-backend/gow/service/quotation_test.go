@@ -9,6 +9,8 @@ import (
 func Test_CreateQuotation_Input_QuotationForm_Should_Be_QuotationInfo(t *testing.T) {
 	quotationService := QuotationServiceMySQL{
 		QuotationRepository: &MockQuotationRepository{},
+		CompanyService:      &mockCompanyService{},
+		CustomerService:     &mockCustomerService{},
 	}
 	expectedQuotation := model.QuotationInfo{
 		Company: model.CompanyQuotationInfo{
@@ -41,10 +43,11 @@ func Test_CreateQuotation_Input_QuotationForm_Should_Be_QuotationInfo(t *testing
 			},
 		},
 		Payment: model.Payment{
+			TotalPrice:         "100,000.00",
 			Discount:           "0.00",
 			PriceAfterDiscount: "100,000.00",
 			VAT:                "7,000.00",
-			TotalPrice:         "107,000.00",
+			NetTotalPrice:      "107,000.00",
 			TotalPriceThai:     "หนึ่งแสนเจ็ดพันบาทถ้วน",
 		},
 		IncludeVAT: false,
