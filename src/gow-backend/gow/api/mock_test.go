@@ -32,6 +32,10 @@ func (mhs mockCustomerService) CreateNewCustomer(newcustomer model.NewCustomer) 
 	return customerInfo, nil
 }
 
+func (m mockCustomerService) GetCustomerByID(int) (model.CustomerInfo, error) {
+	return model.CustomerInfo{}, nil
+}
+
 func (m mockCompanyService) CreateNewCompany(newCompany model.NewCompany) (model.CompanyInfo, error) {
 	var companyInfo model.CompanyInfo
 	company, _ := ioutil.ReadFile("./companyResponse.json")
@@ -43,6 +47,10 @@ func (m mockCompanyService) ListCompanies() ([]model.CompanyInfo, error) {
 	var companies []model.CompanyInfo
 	json.Unmarshal(readFlie, &companies)
 	return companies, nil
+}
+
+func (m mockCompanyService) GetCompanyByID(int) (model.CompanyInfo, error) {
+	return model.CompanyInfo{}, nil
 }
 
 type mockQuotationService struct {
