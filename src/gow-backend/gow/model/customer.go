@@ -73,3 +73,13 @@ func (customer Customer) ToCustomerInfo() CustomerInfo {
 		UpdatedTime: customer.UpdatedTime,
 	}
 }
+
+func (customerInfo CustomerInfo) ToCustomerQuotationInfo() CustomerQuotationInfo {
+	return CustomerQuotationInfo{
+		ID:      customerInfo.ID,
+		Company: customerInfo.Company,
+		Branch:  customerInfo.Branch,
+		Address: customerInfo.Address,
+		TaxID:   customerInfo.TaxID,
+	}
+}

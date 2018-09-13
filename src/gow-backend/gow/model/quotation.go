@@ -1,5 +1,9 @@
 package model
 
+import (
+	"time"
+)
+
 type QuotationForm struct {
 	CompanyID   int     `json:"companyId"`
 	CustomerID  int     `json:"customerId"`
@@ -50,9 +54,30 @@ type CustomerQuotationInfo struct {
 }
 
 type Payment struct {
+	TotalPrice         string `json:"totalPrice"`
 	Discount           string `json:"discount"`
 	PriceAfterDiscount string `json:"priceAfterDiscount"`
 	VAT                string `json:"vat"`
-	TotalPrice         string `json:"totalPrice"`
+	NetTotalPrice      string `json:"netTotalPrice"`
 	TotalPriceThai     string `json:"totalPriceThai"`
+}
+
+type Quotation struct {
+	QuotationID        int
+	QuotationNumber    string
+	CustomerID         int
+	CompanyID          int
+	ContactName        string
+	ContactEmail       string
+	ContactPhoneNumber string
+	TotalPrice         string
+	Discount           string
+	PriceAfterDiscount string
+	VAT                string
+	NetTotalPrice      string
+	TotalPriceThai     string
+	ProjectName        string
+	QuotationDate      time.Time
+	VatRate            float64
+	VatIncluded        bool
 }

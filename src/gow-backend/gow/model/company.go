@@ -80,3 +80,14 @@ func (company Company) ToCompanyInfo() CompanyInfo {
 		UpdatedTime: company.UpdatedTime,
 	}
 }
+
+func (companyInfo CompanyInfo) ToCompanyQuotationInfo() CompanyQuotationInfo {
+	return CompanyQuotationInfo{
+		ID:          companyInfo.ID,
+		Company:     companyInfo.Company,
+		Branch:      companyInfo.Branch,
+		Address:     companyInfo.Address,
+		TaxID:       companyInfo.TaxID,
+		PhoneNumber: companyInfo.PhoneNumber,
+	}
+}
