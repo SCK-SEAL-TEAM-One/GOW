@@ -82,7 +82,7 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 	}, nil
 }
 
-func (quotationService QuotationServiceMySQL) GetQuotation(quotationNumber string) (model.QuotationInfo, error) {
+func (quotationService QuotationServiceMySQL) GetQuotationByQuotationNumber(quotationNumber string) (model.QuotationInfo, error) {
 	quotation, err := quotationService.QuotationRepository.GetByQuotationNumber(quotationNumber)
 	if err != nil {
 		return model.QuotationInfo{}, err

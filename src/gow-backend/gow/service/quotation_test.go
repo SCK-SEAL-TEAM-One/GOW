@@ -91,7 +91,7 @@ func Test_CreateQuotation_Input_QuotationForm_Should_Be_QuotationInfo(t *testing
 	}
 }
 
-func Test_GetQuotation_Input_QT201809_000001_Should_Be_QuotationInfo(t *testing.T) {
+func Test_GetQuotationByQuotationNumber_Input_QT201809_000001_Should_Be_QuotationInfo(t *testing.T) {
 	quotationService := QuotationServiceMySQL{
 		QuotationRepository: &MockQuotationRepository{},
 		OrderRepository:     &MockOrderRepository{},
@@ -140,7 +140,7 @@ func Test_GetQuotation_Input_QT201809_000001_Should_Be_QuotationInfo(t *testing.
 	}
 	quotationNumber := "QT201809-000001"
 
-	actualQuotation, _ := quotationService.GetQuotation(quotationNumber)
+	actualQuotation, _ := quotationService.GetQuotationByQuotationNumber(quotationNumber)
 
 	if quotationNumber != actualQuotation.QuotationNumber {
 		t.Errorf("expect quotation number %v but got it %v", quotationNumber, actualQuotation.QuotationNumber)

@@ -46,6 +46,23 @@ func (orderRepository OrderRepositoryMySQL) InsertOrder(quotationForm model.Quot
 	return true, nil
 }
 
-func (orderRepository OrderRepositoryMySQL) GetByQuotationID(int) ([]model.Order, error) {
-	return []model.Order{}, nil
+func (orderRepository OrderRepositoryMySQL) GetByQuotationID(quotationId int) ([]model.Order, error) {
+	var orders []model.Order
+	statementQuery := `SELECT * FROM orders WHERE quotation_id=?`
+	rows, err := orderRepository.DBConnection.Query(statementQuery, quotationId)
+	if err != nil {
+		return orders, err
+	}
+	for rows.Next() {
+		var order model.Order
+		rows.Scan(
+			&order.OrderID,
+			&order.OrderCourse,
+			&order.Amount,
+			&order.PricePerUnit,
+			&order.Price,
+		)
+		orders = append(orders, order)
+	}
+	return orders, nil
 }
