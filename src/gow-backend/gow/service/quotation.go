@@ -76,7 +76,8 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 			Email:       quotation.ContactEmail,
 			PhoneNumber: quotation.ContactPhoneNumber,
 		},
-		ProjectName: quotation.ProjectName,
-		IncludeVAT:  quotation.VatIncluded,
+		ProjectName:     quotation.ProjectName,
+		IncludeVAT:      quotation.VatIncluded,
+		QuotationNumber: quotation.QuotationNumber,
 	}, nil
 }

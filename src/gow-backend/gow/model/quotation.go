@@ -20,13 +20,14 @@ type Order struct {
 }
 
 type QuotationInfo struct {
-	Company     CompanyQuotationInfo  `json:"company"`
-	Customer    CustomerQuotationInfo `json:"customer"`
-	Contact     Contact               `json:"contact"`
-	ProjectName string                `json:"projectName"`
-	Orders      []Order               `json:"orders"`
-	Payment     Payment               `json:"payment"`
-	IncludeVAT  bool                  `json:"includeVAT"`
+	Company         CompanyQuotationInfo  `json:"company"`
+	Customer        CustomerQuotationInfo `json:"customer"`
+	QuotationNumber string                `json:"quotationNumber"`
+	Contact         Contact               `json:"contact"`
+	ProjectName     string                `json:"projectName"`
+	Orders          []Order               `json:"orders"`
+	Payment         Payment               `json:"payment"`
+	IncludeVAT      bool                  `json:"includeVAT"`
 }
 type QuotationForm struct {
 	CompanyTaxID  string  `json:"companyTaxId"`
