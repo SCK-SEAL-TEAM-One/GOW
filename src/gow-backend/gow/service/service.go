@@ -18,4 +18,5 @@ type CompanyService interface {
 
 type QuotationService interface {
 	CreateQuotation(model.QuotationForm) (model.QuotationInfo, error)
+	GetQuotationByQuotationNumber(string) (model.QuotationInfo, error)
 }

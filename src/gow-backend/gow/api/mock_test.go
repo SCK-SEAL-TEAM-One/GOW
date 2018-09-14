@@ -62,3 +62,10 @@ func (m mockQuotationService) CreateQuotation(model.QuotationForm) (model.Quotat
 	json.Unmarshal(readFlie, &quotationInfo)
 	return quotationInfo, nil
 }
+
+func (m mockQuotationService) GetQuotationByQuotationNumber(string) (model.QuotationInfo, error) {
+	readFlie, _ := ioutil.ReadFile("quotationInfo.json")
+	var quotationInfo model.QuotationInfo
+	json.Unmarshal(readFlie, &quotationInfo)
+	return quotationInfo, nil
+}
