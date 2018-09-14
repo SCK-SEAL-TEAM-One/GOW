@@ -54,8 +54,8 @@ func Test_CreateQuotation_Input_QuotationForm_Should_Be_QuotationInfo(t *testing
 		IncludeVAT: false,
 	}
 	quotationForm := model.QuotationForm{
-		CompanyID:  2,
-		CustomerID: 3,
+		CompanyTaxID:  "0105561001221",
+		CustomerTaxID: "0105537133562",
 		Contact: model.Contact{
 			Name:        "Nopparat Slisatkorn",
 			Email:       "nopparat.slisatkorn@krungsri.com",
@@ -69,7 +69,9 @@ func Test_CreateQuotation_Input_QuotationForm_Should_Be_QuotationInfo(t *testing
 				PricePerUnit: "100,000.00",
 			},
 		},
-		Discount:   "0.00",
+		Payment: model.Payment{
+			Discount: "0.00",
+		},
 		IncludeVAT: false,
 	}
 

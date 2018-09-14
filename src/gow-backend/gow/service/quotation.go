@@ -56,23 +56,27 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 		return model.QuotationInfo{}, err
 	}
 
-	company, err := quotationService.CompanyService.GetCompanyByID(quotation.CompanyID)
+	company, err := quotationService.CompanyService.GetCompanyByTaxID(quotation.CompanyTaxID)
 	if err != nil {
 		return model.QuotationInfo{}, err
 	}
 
-	customer, err := quotationService.CustomerService.GetCustomerByID(quotation.CustomerID)
+	customer, err := quotationService.CustomerService.GetCustomerByTaxID(quotation.CustomerTaxID)
 	if err != nil {
 		return model.QuotationInfo{}, err
 	}
 
 	return model.QuotationInfo{
-		Company:     company.ToCompanyQuotationInfo(),
-		Customer:    customer.ToCustomerQuotationInfo(),
-		Orders:      quotationForm.Orders,
-		Payment:     payment,
-		Contact:     quotationForm.Contact,
-		ProjectName: quotationForm.ProjectName,
-		IncludeVAT:  quotationForm.IncludeVAT,
+		Company:  company.ToCompanyQuotationInfo(),
+		Customer: customer.ToCustomerQuotationInfo(),
+		Orders:   quotationForm.Orders,
+		Payment:  payment,
+		Contact: model.Contact{
+			Name:        quotation.ContactName,
+			Email:       quotation.ContactEmail,
+			PhoneNumber: quotation.ContactPhoneNumber,
+		},
+		ProjectName: quotation.ProjectName,
+		IncludeVAT:  quotation.VatIncluded,
 	}, nil
 }
