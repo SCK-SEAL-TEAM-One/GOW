@@ -120,7 +120,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"companyId\":1,\n    \"customerId\": 2,\n    \"contact\":{\n        \"name\":\"Nopparat Slisatkorn\",\n        \"email\":\"nopparat.slisatkorn@krungsri.com\",\n        \"phoneNumber\":\"\"\n    },\n    \"projectName\":\"โครงการ 3 Days Software Testing in Action Workshop\",\n    \"orders\": [\n        {\n          \"orderCourse\": \"ค่าฝึกอบรม Software Testing in Action จำนวน 3 วัน วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561\",\n          \"amount\": 1,\n          \"pricePerUnit\":\"100,000.00\",\n          \"price\":\"100,000.00\"\n        }\n    ],\n    \"payment\":{\n    \t\"discount\":\"0.00\"\n    },\n    \"includeVAT\":false\n}"
+					"raw": "{\n    \"companyTaxId\":\"0105561001221\",\n    \"customerTaxId\": \"0105537133562\",\n    \"contact\":{\n        \"name\":\"Nopparat Slisatkorn\",\n        \"email\":\"nopparat.slisatkorn@krungsri.com\",\n        \"phoneNumber\":\"\"\n    },\n    \"projectName\":\"โครงการ 3 Days Software Testing in Action Workshop\",\n    \"orders\": [\n        {\n          \"orderCourse\": \"ค่าฝึกอบรม Software Testing in Action จำนวน 3 วัน วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561\",\n          \"amount\": 1,\n          \"pricePerUnit\":\"100,000.00\",\n          \"price\":\"100,000.00\"\n        }\n    ],\n    \"payment\":{\n    \t\"discount\":\"0.00\"\n    },\n    \"includeVAT\":false\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/v1/quotation",
