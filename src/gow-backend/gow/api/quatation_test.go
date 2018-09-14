@@ -29,3 +29,24 @@ func Test_CreateQuotationHandler_Input_RequestQuotationForm_Should_Be_Status_201
 	}
 
 }
+
+func Test_GetQuotationHandler_Input_QT201809_000001_RequestQuotationForm_Should_Be_Status_200_And_QuotationInfo_Project_3_Days_Software_Testing_In_Action(t *testing.T) {
+	expected, _ := ioutil.ReadFile("quotationInfo.json")
+	quotationNumber := "QT201809-000001"
+	request := httptest.NewRequest("GET", "/api/v1/quotation/"+quotationNumber, nil)
+	writer := httptest.NewRecorder()
+	quotationAPI := QuotationAPI{
+		QuotationService: &mockQuotationService{},
+	}
+	testRoute := route.NewRoute(CompanyAPI{}, CustomerAPI{}, quotationAPI)
+
+	testRoute.ServeHTTP(writer, request)
+
+	response := writer.Result()
+	actual, _ := ioutil.ReadAll(response.Body)
+
+	if string(expected) != string(actual) {
+		t.Errorf("expect \n'%s' \nbut got it \n'%s'", expected, actual)
+	}
+
+}

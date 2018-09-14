@@ -26,3 +26,7 @@ func (quotationApi QuotationAPI) CreateQuotationHandler(context *gin.Context) {
 	}
 	context.JSON(200, quotationInfo)
 }
+
+func (quotationApi QuotationAPI) GetQuotationHandler(context *gin.Context) {
+
+}
