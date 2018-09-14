@@ -43,10 +43,10 @@ CREATE TABLE IF NOT EXISTS quotation (
     quotation_date DATETIME,
     vat_rate VARCHAR(512),
     vat_included VARCHAR(512),
-    customer_id INT(3) UNSIGNED ,
-    company_id INT(3) UNSIGNED ,
-    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (company_id) REFERENCES company(company_id),
+    customer_taxid VARCHAR(13) ,
+    company_taxid VARCHAR(13) ,
+    FOREIGN KEY (company_taxid) REFERENCES company(company_taxid),
+    FOREIGN KEY (customer_taxid) REFERENCES customer(customer_taxid),
     created_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_time DATETIME ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -4,16 +4,6 @@ import (
 	"time"
 )
 
-type QuotationForm struct {
-	CompanyID   int     `json:"companyId"`
-	CustomerID  int     `json:"customerId"`
-	Contact     Contact `json:"contact"`
-	ProjectName string  `json:"projectName"`
-	Orders      []Order `json:"orders"`
-	IncludeVAT  bool    `json:"includeVAT"`
-	Payment     Payment `json:"payment"`
-}
-
 type Contact struct {
 	Name        string `json:"name"`
 	Email       string `json:"email"`
@@ -37,6 +27,15 @@ type QuotationInfo struct {
 	Orders      []Order               `json:"orders"`
 	Payment     Payment               `json:"payment"`
 	IncludeVAT  bool                  `json:"includeVAT"`
+}
+type QuotationForm struct {
+	CompanyTaxID  string  `json:"companyTaxId"`
+	CustomerTaxID string  `json:"customerTaxId"`
+	Contact       Contact `json:"contact"`
+	ProjectName   string  `json:"projectName"`
+	Orders        []Order `json:"orders"`
+	IncludeVAT    bool    `json:"includeVAT"`
+	Payment       Payment `json:"payment"`
 }
 
 type CompanyQuotationInfo struct {
@@ -67,8 +66,8 @@ type Payment struct {
 type Quotation struct {
 	QuotationID        int
 	QuotationNumber    string
-	CustomerID         int
-	CompanyID          int
+	CustomerTaxID      string
+	CompanyTaxID       string
 	ContactName        string
 	ContactEmail       string
 	ContactPhoneNumber string
