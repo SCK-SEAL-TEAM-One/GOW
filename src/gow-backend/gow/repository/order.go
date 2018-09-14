@@ -3,6 +3,8 @@ package repository
 import (
 	"database/sql"
 	"gow/model"
+	"gow/stringutil"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -48,20 +50,24 @@ func (orderRepository OrderRepositoryMySQL) InsertOrder(quotationForm model.Quot
 
 func (orderRepository OrderRepositoryMySQL) GetByQuotationID(quotationId int) ([]model.Order, error) {
 	var orders []model.Order
-	statementQuery := `SELECT * FROM orders WHERE quotation_id=?`
+	statementQuery := `SELECT amount, price_per_unit, price, description FROM orders WHERE quotation_id=?`
 	rows, err := orderRepository.DBConnection.Query(statementQuery, quotationId)
 	if err != nil {
 		return orders, err
 	}
+
 	for rows.Next() {
 		var order model.Order
 		rows.Scan(
-			&order.OrderID,
-			&order.OrderCourse,
 			&order.Amount,
 			&order.PricePerUnit,
 			&order.Price,
+			&order.OrderCourse,
 		)
+		pricePerUnit, _ := strconv.ParseFloat(order.PricePerUnit, 64)
+		price, _ := strconv.ParseFloat(order.Price, 64)
+		order.PricePerUnit = stringutil.AddComma(pricePerUnit)
+		order.Price = stringutil.AddComma(price)
 		orders = append(orders, order)
 	}
 	return orders, nil
