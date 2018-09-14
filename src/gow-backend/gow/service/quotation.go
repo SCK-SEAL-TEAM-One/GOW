@@ -3,6 +3,7 @@ package service
 import (
 	"gow/model"
 	"gow/repository"
+	"gow/stringutil"
 	"strconv"
 	"strings"
 )
@@ -33,11 +34,11 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 	netTotalPrice := CalculateNetTotalPrice(priceAfterDiscount, taxFee)
 
 	payment := model.Payment{
-		TotalPrice:         AddComma(totalPrice),
-		Discount:           AddComma(discountFloat),
-		PriceAfterDiscount: AddComma(priceAfterDiscount),
-		VAT:                AddComma(taxFee),
-		NetTotalPrice:      AddComma(netTotalPrice),
+		TotalPrice:         stringutil.AddComma(totalPrice),
+		Discount:           stringutil.AddComma(discountFloat),
+		PriceAfterDiscount: stringutil.AddComma(priceAfterDiscount),
+		VAT:                stringutil.AddComma(taxFee),
+		NetTotalPrice:      stringutil.AddComma(netTotalPrice),
 		TotalPriceThai:     ConvertMoneyToThaiCharactor(netTotalPrice),
 	}
 
