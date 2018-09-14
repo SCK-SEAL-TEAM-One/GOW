@@ -22,7 +22,7 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 		return model.QuotationInfo{}, err
 	}
 
-	discount := strings.Replace(quotationForm.Discount, ",", "", -1)
+	discount := strings.Replace(quotationForm.Payment.Discount, ",", "", -1)
 	discountFloat, err := strconv.ParseFloat(discount, 64)
 	if err != nil {
 		return model.QuotationInfo{}, err
@@ -45,6 +45,7 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 	if err != nil {
 		return model.QuotationInfo{}, err
 	}
+
 	_, err = quotationService.OrderRepository.InsertOrder(quotationForm, quotationID)
 	if err != nil {
 		return model.QuotationInfo{}, err
@@ -66,9 +67,12 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 	}
 
 	return model.QuotationInfo{
-		Company:  company.ToCompanyQuotationInfo(),
-		Customer: customer.ToCustomerQuotationInfo(),
-		Orders:   quotationForm.Orders,
-		Payment:  payment,
+		Company:     company.ToCompanyQuotationInfo(),
+		Customer:    customer.ToCustomerQuotationInfo(),
+		Orders:      quotationForm.Orders,
+		Payment:     payment,
+		Contact:     quotationForm.Contact,
+		ProjectName: quotationForm.ProjectName,
+		IncludeVAT:  quotationForm.IncludeVAT,
 	}, nil
 }
