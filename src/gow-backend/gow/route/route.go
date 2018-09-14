@@ -17,7 +17,7 @@ func NewRoute(companyApi apiLibrary.CompanyAPI, customerApi apiLibrary.CustomerA
 	route.POST("api/v1/companies", companyApi.CreateCompanyHandler)
 	route.GET("api/v1/companies", companyApi.GetAllCompaniesHandler)
 	route.POST("api/v1/quotation", quotationApi.CreateQuotationHandler)
-	route.GET("api/v1/quotation/:quotationNumber", quotationApi.CreateQuotationHandler)
+	route.GET("api/v1/quotation/:quotationNumber", quotationApi.GetQuotationHandler)
 	route.GET("/health", func(c *gin.Context) {
 
 		startTime := time.Now()
