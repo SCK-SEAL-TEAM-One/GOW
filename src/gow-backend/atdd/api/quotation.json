@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d669754b-c97d-46ef-9d2c-cb374045fe7a",
+						"id": "cd5f7331-d3c9-426b-9b42-c3a5d2a544ed",
 						"type": "text/javascript",
 						"exec": [
 							"var quotation = pm.response.json();",
@@ -105,7 +105,9 @@
 							"",
 							"pm.test(\"Check Include VAT\", function () {",
 							"    pm.expect(quotation.includeVAT).to.eql(false);",
-							"});"
+							"});",
+							"",
+							"pm.globals.set(\"quotationNumber\", quotation.quotationNumber);"
 						]
 					}
 				}
@@ -144,13 +146,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "311d6bfe-7874-4af9-b152-076df3cd6ec1",
+						"id": "96f29470-4b57-41f4-8cb6-6664d8fca9f6",
 						"type": "text/javascript",
 						"exec": [
 							"var quotation = pm.response.json();",
 							"",
 							"pm.test(\"Check quotation number should be QT201809-000001\", function () {",
-							"        pm.expect(quotation.quotationNumber).to.eql(\"QT201809-000001\");",
+							"        pm.expect(quotation.quotationNumber).to.eql(pm.globals.get(\"quotationNumber\"));",
 							"});",
 							"",
 							"pm.test(\"Check company\", function () {",
@@ -243,7 +245,8 @@
 							"",
 							"pm.test(\"Check Include VAT\", function () {",
 							"    pm.expect(quotation.includeVAT).to.eql(false);",
-							"});"
+							"});",
+							""
 						]
 					}
 				}
@@ -261,7 +264,7 @@
 					"raw": "{\n    \"companyTaxId\":\"0105561001221\",\n    \"customerTaxId\": \"0105537133562\",\n    \"contact\":{\n        \"name\":\"Nopparat Slisatkorn\",\n        \"email\":\"nopparat.slisatkorn@krungsri.com\",\n        \"phoneNumber\":\"\"\n    },\n    \"projectName\":\"โครงการ 3 Days Software Testing in Action Workshop\",\n    \"orders\": [\n        {\n          \"orderCourse\": \"ค่าฝึกอบรม Software Testing in Action จำนวน 3 วัน วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561\",\n          \"amount\": 1,\n          \"pricePerUnit\":\"100,000.00\",\n          \"price\":\"100,000.00\"\n        }\n    ],\n    \"payment\":{\n    \t\"discount\":\"0.00\"\n    },\n    \"includeVAT\":false\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/v1/quotation/QT201809-000001",
+					"raw": "http://localhost:3000/api/v1/quotation/{{quotationNumber}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -271,7 +274,7 @@
 						"api",
 						"v1",
 						"quotation",
-						"QT201809-000001"
+						"{{quotationNumber}}"
 					]
 				}
 			},
