@@ -1,7 +1,6 @@
 package service
 
 import (
-	"bytes"
 	"fmt"
 	"gow/model"
 	"gow/stringutil"
@@ -14,29 +13,6 @@ const (
 	IntegerUnit  = 0
 	DecimalUnit  = 1
 )
-
-func AddComma(number float64) string {
-	numberString := fmt.Sprintf("%.2f", number)
-	splitedNumberString := strings.Split(numberString, ".")
-
-	numberIntegerString := splitedNumberString[0]
-	numberDecimalString := splitedNumberString[1]
-
-	var buffer bytes.Buffer
-	reverseNum := stringutil.Reverse(numberIntegerString)
-	count := 0
-	for index := 0; index < len(numberIntegerString); index++ {
-		count++
-		buffer.WriteString(reverseNum[index : index+1])
-		if count == 3 && index != len(numberIntegerString)-1 {
-			buffer.WriteString(",")
-			count = 0
-		}
-	}
-
-	numberIntegerString = stringutil.Reverse(buffer.String())
-	return fmt.Sprintf("%s.%s", numberIntegerString, numberDecimalString)
-}
 
 func CalculatePrice(amount int, pricePerUnit float64) float64 {
 	price := float64(amount) * pricePerUnit
@@ -113,7 +89,7 @@ func CalculateOrdersPrice(orders *[]model.Order) (float64, error) {
 			return 0.00, err
 		}
 		price := CalculatePrice(order.Amount, pricePerUnit)
-		(*orders)[index].Price = AddComma(price)
+		(*orders)[index].Price = stringutil.AddComma(price)
 		totalPrice += price
 	}
 	return totalPrice, nil

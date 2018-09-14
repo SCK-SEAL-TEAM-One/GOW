@@ -42,17 +42,6 @@ func Test_CalculateVat_Input_Price_And_VatRate_Should_Be_Vat(t *testing.T) {
 	}
 }
 
-func Test_AddComma_Input_100000_00_Should_Be_100_comma_000_00(t *testing.T) {
-	expectedPriceFormat := "100,000.00"
-	price := 100000.00
-
-	actualPriceFormat := AddComma(price)
-
-	if expectedPriceFormat != actualPriceFormat {
-		t.Errorf("expect %s but got %s", expectedPriceFormat, actualPriceFormat)
-	}
-}
-
 func Test_CalculateNetTotalPrice_Input_PriceAfterDiscount_100000_And_VatFee_7000_Should_Be_NetTotalPrice_107000(t *testing.T) {
 	expectedNetTotalPrice := 107000.00
 	price := 100000.00
