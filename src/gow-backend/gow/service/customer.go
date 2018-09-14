@@ -32,6 +32,6 @@ func (customerService CustomerServiceMySQL) ListCustomers() ([]model.CustomerInf
 	return customerService.CustomerRepository.GetAll()
 }
 
-func (customerService CustomerServiceMySQL) GetCustomerByID(int) (model.CustomerInfo, error) {
-	return model.CustomerInfo{}, nil
+func (customerService CustomerServiceMySQL) GetCustomerByTaxID(customerTaxId string) (model.CustomerInfo, error) {
+	return customerService.CustomerRepository.GetByTaxID(customerTaxId)
 }

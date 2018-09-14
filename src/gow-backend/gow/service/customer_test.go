@@ -52,3 +52,24 @@ func Test_ListCustomers_Should_Be_CustomerInfo(t *testing.T) {
 	}
 
 }
+
+func Test_GetCustomerByTaxID_Input_ID_0105537133562_Should_Be_CompanyInfo_Aycap(t *testing.T) {
+	customerService := CustomerServiceMySQL{
+		CustomerRepository: &MockCustomerRepository{},
+	}
+	customerTaxId := "0105537133562"
+	expectedCustomer := model.CustomerInfo{
+		ID:      1,
+		Company: "บริษัท อยุธยา แคปปิตอล เซอร์วิสเซ",
+		Branch:  "สำนักงานใหญ่",
+		Address: "อาคารกรุงศรีเพลินจิต ทาวเวอร์ 550 ถนนเพลินจิต แขวงเขตปทุมวัน กรุงเทพมหานคร",
+		TaxID:   "0105537133562",
+	}
+
+	actualCustomer, _ := customerService.GetCustomerByTaxID(customerTaxId)
+
+	if expectedCustomer != actualCustomer {
+		t.Errorf("expect %v but got it %v", expectedCustomer, actualCustomer)
+	}
+
+}
