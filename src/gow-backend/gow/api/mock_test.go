@@ -32,7 +32,7 @@ func (mhs mockCustomerService) CreateNewCustomer(newcustomer model.NewCustomer) 
 	return customerInfo, nil
 }
 
-func (m mockCustomerService) GetCustomerByID(int) (model.CustomerInfo, error) {
+func (m mockCustomerService) GetCustomerByTaxID(string) (model.CustomerInfo, error) {
 	return model.CustomerInfo{}, nil
 }
 
@@ -49,7 +49,7 @@ func (m mockCompanyService) ListCompanies() ([]model.CompanyInfo, error) {
 	return companies, nil
 }
 
-func (m mockCompanyService) GetCompanyByID(int) (model.CompanyInfo, error) {
+func (m mockCompanyService) GetCompanyByTaxID(string) (model.CompanyInfo, error) {
 	return model.CompanyInfo{}, nil
 }
 

@@ -1,6 +1,6 @@
 {
-    "companyId": 1,
-    "customerId": 3,
+    "companyTaxId":"0105561001221",
+    "customerTaxId": "0105537133562",
     "contact": {
         "name": "Nopparat Slisatkorn",
         "email": "nopparat.slisatkorn@krungsri.com",
