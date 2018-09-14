@@ -81,3 +81,41 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 		QuotationNumber: quotation.QuotationNumber,
 	}, nil
 }
+
+func (quotationService QuotationServiceMySQL) GetQuotation(quotationNumber string) (model.QuotationInfo, error) {
+	quotation, err := quotationService.QuotationRepository.GetByQuotationNumber(quotationNumber)
+	if err != nil {
+		return model.QuotationInfo{}, err
+	}
+	company, err := quotationService.CompanyService.GetCompanyByTaxID(quotation.CompanyTaxID)
+	if err != nil {
+		return model.QuotationInfo{}, err
+	}
+	customer, err := quotationService.CustomerService.GetCustomerByTaxID(quotation.CustomerTaxID)
+	if err != nil {
+		return model.QuotationInfo{}, err
+	}
+	orders, err := quotationService.OrderRepository.GetByQuotationID(quotation.QuotationID)
+	return model.QuotationInfo{
+		Company:  company.ToCompanyQuotationInfo(),
+		Customer: customer.ToCustomerQuotationInfo(),
+		Orders:   orders,
+		Payment: model.Payment{
+			TotalPrice:         quotation.TotalPrice,
+			Discount:           quotation.Discount,
+			PriceAfterDiscount: quotation.PriceAfterDiscount,
+			VAT:                quotation.VAT,
+			NetTotalPrice:      quotation.NetTotalPrice,
+			TotalPriceThai:     quotation.TotalPriceThai,
+		},
+		Contact: model.Contact{
+			Name:        quotation.ContactName,
+			Email:       quotation.ContactEmail,
+			PhoneNumber: quotation.ContactPhoneNumber,
+		},
+		ProjectName:     quotation.ProjectName,
+		IncludeVAT:      quotation.VatIncluded,
+		QuotationNumber: quotation.QuotationNumber,
+	}, nil
+
+}

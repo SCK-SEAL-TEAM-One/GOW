@@ -10,6 +10,7 @@ import (
 type QuotationRepository interface {
 	InsertQuotation(model.QuotationForm, model.Payment, float64) (int64, error)
 	GetQuotationByID(int64) (model.Quotation, error)
+	GetByQuotationNumber(string) (model.Quotation, error)
 }
 
 type QuotationRepositoryMySQL struct {
@@ -21,7 +22,7 @@ func (quotationRepository QuotationRepositoryMySQL) GenerateQuotationNumber() st
 	statementQuery := `SELECT COUNT(*) FROM quotation WHERE YEAR(created_time) = ?`
 	row := quotationRepository.DBConnection.QueryRow(statementQuery, time.Now().Year())
 	row.Scan(&quatationNumber)
-	return fmt.Sprintf("QT%d%d-%06d", time.Now().Year(), time.Now().Month(), quatationNumber+1)
+	return fmt.Sprintf("QT%d%02d-%06d", time.Now().Year(), time.Now().Month(), quatationNumber+1)
 }
 
 func (quotationRepository QuotationRepositoryMySQL) InsertQuotation(quotationForm model.QuotationForm, payment model.Payment, vatRate float64) (int64, error) {

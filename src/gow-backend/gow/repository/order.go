@@ -9,7 +9,7 @@ import (
 
 type OrderRepository interface {
 	InsertOrder(model.QuotationForm, int64) (bool, error)
-	GetByQuotationID(string) ([]model.Order, error)
+	GetByQuotationID(int) ([]model.Order, error)
 }
 
 type OrderRepositoryMySQL struct {
@@ -46,6 +46,6 @@ func (orderRepository OrderRepositoryMySQL) InsertOrder(quotationForm model.Quot
 	return true, nil
 }
 
-func (orderRepository OrderRepositoryMySQL) GetByQuotationID(string) ([]model.Order, error) {
+func (orderRepository OrderRepositoryMySQL) GetByQuotationID(int) ([]model.Order, error) {
 	return []model.Order{}, nil
 }

@@ -85,7 +85,32 @@ func (mock MockQuotationRepository) InsertQuotation(model.QuotationForm, model.P
 }
 
 func (mock MockQuotationRepository) GetQuotationByID(int64) (model.Quotation, error) {
-	return model.Quotation{}, nil
+	return model.Quotation{
+		QuotationID:        1,
+		QuotationNumber:    "QT201809-000001",
+		ContactName:        "Nopparat Slisatkorn",
+		ContactEmail:       "nopparat.slisatkorn@krungsri.com",
+		ContactPhoneNumber: "",
+		ProjectName:        "โครงการ 3 Days Software Testing in Action Workshop",
+		VatIncluded:        false,
+	}, nil
+}
+func (mock MockQuotationRepository) GetByQuotationNumber(string) (model.Quotation, error) {
+	return model.Quotation{
+		QuotationID:        1,
+		QuotationNumber:    "QT201809-000001",
+		TotalPrice:         "100,000.00",
+		Discount:           "0.00",
+		PriceAfterDiscount: "100,000.00",
+		VAT:                "7,000.00",
+		NetTotalPrice:      "107,000.00",
+		TotalPriceThai:     "หนึ่งแสนเจ็ดพันบาทถ้วน",
+		ContactName:        "Nopparat Slisatkorn",
+		ContactEmail:       "nopparat.slisatkorn@krungsri.com",
+		ContactPhoneNumber: "",
+		ProjectName:        "โครงการ 3 Days Software Testing in Action Workshop",
+		VatIncluded:        false,
+	}, nil
 }
 
 type MockOrderRepository struct{}
@@ -94,8 +119,15 @@ func (mock MockOrderRepository) InsertOrder(model.QuotationForm, int64) (bool, e
 	return true, nil
 }
 
-func (mock MockOrderRepository) GetByQuotationID(string) ([]model.Order, error) {
-	return []model.Order{}, nil
+func (mock MockOrderRepository) GetByQuotationID(int) ([]model.Order, error) {
+	return []model.Order{
+		{
+			OrderCourse:  "ค่าฝึกอบรม Software Testing in Action จำนวน 3 วัน วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561",
+			Amount:       1,
+			PricePerUnit: "100,000.00",
+			Price:        "100,000.00",
+		},
+	}, nil
 }
 
 type mockCompanyService struct {
