@@ -27,8 +27,8 @@ func (quotationRepository QuotationRepositoryMySQL) GenerateQuotationNumber() st
 func (quotationRepository QuotationRepositoryMySQL) InsertQuotation(quotationForm model.QuotationForm, payment model.Payment, vatRate float64) (int64, error) {
 	newQuotation := model.Quotation{
 		QuotationNumber:    quotationRepository.GenerateQuotationNumber(),
-		CompanyID:          quotationForm.CompanyID,
-		CustomerID:         quotationForm.CustomerID,
+		CompanyTaxID:       quotationForm.CompanyTaxID,
+		CustomerTaxID:      quotationForm.CustomerTaxID,
 		ContactName:        quotationForm.Contact.Name,
 		ContactEmail:       quotationForm.Contact.Email,
 		ContactPhoneNumber: quotationForm.Contact.PhoneNumber,
@@ -57,8 +57,8 @@ func (quotationRepository QuotationRepositoryMySQL) InsertQuotation(quotationFor
 	defer statementInsert.Close()
 	result, err := statementInsert.Exec(
 		newQuotation.QuotationNumber,
-		newQuotation.CustomerID,
-		newQuotation.CompanyID,
+		newQuotation.CustomerTaxID,
+		newQuotation.CompanyTaxID,
 		newQuotation.ContactName,
 		newQuotation.ContactEmail,
 		newQuotation.ContactPhoneNumber,
@@ -90,8 +90,8 @@ func (quotationRepository QuotationRepositoryMySQL) GetQuotationByID(quotationID
 	err := row.Scan(
 		&quotation.QuotationID,
 		&quotation.QuotationNumber,
-		&quotation.CustomerID,
-		&quotation.CompanyID,
+		&quotation.CustomerTaxID,
+		&quotation.CompanyTaxID,
 		&quotation.ContactName,
 		&quotation.ContactEmail,
 		&quotation.ContactPhoneNumber,
