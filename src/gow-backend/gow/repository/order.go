@@ -3,6 +3,7 @@ package repository
 import (
 	"database/sql"
 	"gow/model"
+	"strings"
 	"time"
 )
 
@@ -19,7 +20,7 @@ func (orderRepository OrderRepositoryMySQL) InsertOrder(quotationForm model.Quot
 	if len(quotationForm.Orders) == 0 {
 		return true, nil
 	}
-	statement := `INSERT INTO order 
+	statement := `INSERT INTO orders 
 	(amount,price_per_unit,price,description,quotation_id, created_time, updated_time)
 	VALUES ( ?, ?, ?, ?, ?, ?, ?)`
 	statementInsert, err := orderRepository.DBConnection.Prepare(statement)
@@ -30,8 +31,8 @@ func (orderRepository OrderRepositoryMySQL) InsertOrder(quotationForm model.Quot
 	for _, order := range quotationForm.Orders {
 		_, err = statementInsert.Exec(
 			order.Amount,
-			order.PricePerUnit,
-			order.Price,
+			strings.Replace(order.PricePerUnit, ",", "", -1),
+			strings.Replace(order.Price, ",", "", -1),
 			order.OrderCourse,
 			quotationID,
 			time.Now(),
