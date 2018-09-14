@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "37881792-f97a-48cf-9fd0-dff6f7fd04f0",
+						"id": "d669754b-c97d-46ef-9d2c-cb374045fe7a",
 						"type": "text/javascript",
 						"exec": [
 							"var quotation = pm.response.json();",
@@ -24,7 +24,7 @@
 							"});",
 							"",
 							"pm.test(\"Check address company\", function () {",
-							"    pm.expect(quotation.company.address).to.eql(\"เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\");",
+							"    pm.expect(quotation.company.address).to.eql(\"เลขที่ 3 อาคารพร้อมพันธุ์ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าว 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900\");",
 							"});",
 							"",
 							"pm.test(\"Check tax ID company\", function () {",
@@ -32,7 +32,7 @@
 							"});",
 							"",
 							"pm.test(\"Check phone number company\", function () {",
-							"    pm.expect(quotation.company.phoneNumber).to.eql(\"+66979575936\");",
+							"    pm.expect(quotation.company.phoneNumber).to.eql(\"+66979515936\");",
 							"});",
 							"",
 							"pm.test(\"Check Customer\", function () {",
@@ -104,7 +104,7 @@
 							"});",
 							"",
 							"pm.test(\"Check Include VAT\", function () {",
-							"    pm.expect(quotation.includeVAT).to.eql(\"false\");",
+							"    pm.expect(quotation.includeVAT).to.eql(false);",
 							"});"
 						]
 					}
