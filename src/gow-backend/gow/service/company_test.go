@@ -71,3 +71,25 @@ func Test_ConvertMoneyToThaiCharactor_Input_100000_Should_Be_One_Hundred_Thousan
 		t.Errorf("expect %s but it got %s", expectedNumber, actual)
 	}
 }
+
+func Test_GetCompanyByTaxID_Input_ID_2_Should_Be_CompanyInfo_Aycap(t *testing.T) {
+	companyService := CompanyServiceMySQL{
+		CompanyRepository: &MockCompanyRepository{},
+	}
+	companyTaxId := "0105561001221"
+	expectedCompany := model.CompanyInfo{
+		ID:          2,
+		Company:     "บริษัท ชู ฮา ริ จำกัด",
+		Branch:      "สำนักงานใหญ่",
+		Address:     "เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900",
+		TaxID:       "0105561001221",
+		PhoneNumber: "+66979575936",
+	}
+
+	actualCompany, _ := companyService.GetCompanyByTaxID(companyTaxId)
+
+	if expectedCompany != actualCompany {
+		t.Errorf("expect %v but got it %v", expectedCompany, actualCompany)
+	}
+
+}

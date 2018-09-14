@@ -30,6 +30,6 @@ func (companyService CompanyServiceMySQL) ListCompanies() ([]model.CompanyInfo, 
 	return companyService.CompanyRepository.GetAll()
 }
 
-func (companyService CompanyServiceMySQL) GetCompanyByID(int) (model.CompanyInfo, error) {
-	return model.CompanyInfo{}, nil
+func (companyService CompanyServiceMySQL) GetCompanyByTaxID(companyTaxID string) (model.CompanyInfo, error) {
+	return companyService.CompanyRepository.GetByTaxID(companyTaxID)
 }
