@@ -43,10 +43,9 @@ func (quotationRepository QuotationRepositoryMySQL) InsertQuotation(quotationFor
 		VatRate:            vatRate,
 		VatIncluded:        quotationForm.IncludeVAT,
 	}
-	fmt.Println("quotationForm.ProjectName", quotationForm.ProjectName, newQuotation.ProjectName)
 
 	statement := `INSERT INTO quotation 
-	(quotation_number,customer_id,company_id,contact_name,contact_email,contact_phoneNumber,
+	(quotation_number,customer_taxid, company_taxid,contact_name,contact_email,contact_phoneNumber,
 	total_price,discount_price,price_after_discount,vat,net_total_price,total_price_thai,
 	project_name,quotation_date,vat_rate,vat_included,created_time,updated_time)
 	VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )`
@@ -83,7 +82,7 @@ func (quotationRepository QuotationRepositoryMySQL) InsertQuotation(quotationFor
 
 func (quotationRepository QuotationRepositoryMySQL) GetQuotationByID(quotationID int64) (model.Quotation, error) {
 	var quotation model.Quotation
-	statementQuery := `SELECT quotation_id, quotation_number, customer_id, company_id, contact_name, contact_email, contact_phoneNumber,
+	statementQuery := `SELECT quotation_id, quotation_number, customer_taxid, company_taxid, contact_name, contact_email, contact_phoneNumber,
 		total_price,discount_price,price_after_discount,vat,net_total_price,total_price_thai,
 		project_name,quotation_date,vat_rate,vat_included,created_time,updated_time FROM quotation WHERE quotation_id = ?`
 	row := quotationRepository.DBConnection.QueryRow(statementQuery, quotationID)
