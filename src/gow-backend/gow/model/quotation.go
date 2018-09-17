@@ -35,7 +35,6 @@ type QuotationForm struct {
 	IncludeVAT    bool    `json:"includeVAT"`
 	Payment       Payment `json:"payment"`
 }
-
 type CompanyQuotationInfo struct {
 	ID          int    `json:"id"`
 	Company     string `json:"company"`
