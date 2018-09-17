@@ -8,22 +8,22 @@ type Contact struct {
 	PhoneNumber string `json:"phoneNumber"`
 }
 type Order struct {
-	OrderID      int    `json:"orderId"`
-	OrderCourse  string `json:"orderCourse"`
-	Amount       int    `json:"amount"`
-	PricePerUnit string `json:"pricePerUnit"`
-	Price        string `json:"price"`
+	OrderID      int     `json:"orderId"`
+	OrderCourse  string  `json:"orderCourse"`
+	Amount       int     `json:"amount"`
+	PricePerUnit float64 `json:"pricePerUnit"`
+	Price        float64 `json:"price"`
 	createdTime  time.Time
 	updatedTime  time.Time
 }
 
 type Payment struct {
-	TotalPrice         string `json:"totalPrice"`
-	Discount           string `json:"discount"`
-	PriceAfterDiscount string `json:"priceAfterDiscount"`
-	VAT                string `json:"vat"`
-	NetTotalPrice      string `json:"netTotalPrice"`
-	TotalPriceThai     string `json:"totalPriceThai"`
+	TotalPrice         float64 `json:"totalPrice"`
+	Discount           float64 `json:"discount"`
+	PriceAfterDiscount float64 `json:"priceAfterDiscount"`
+	VAT                float64 `json:"vat"`
+	NetTotalPrice      float64 `json:"netTotalPrice"`
+	TotalPriceThai     string  `json:"totalPriceThai"`
 }
 
 type QuotationForm struct {
@@ -35,6 +35,14 @@ type QuotationForm struct {
 	IncludeVAT    bool    `json:"includeVAT"`
 	Payment       Payment `json:"payment"`
 }
+
+// func (quotationForm QuotationForm) GetTotalPrice() float64 {
+// 	var totalPrice float64
+// 	for _, order := range quotationForm.Orders {
+// 		totalPrice += order.Amount * order.PricePerUnit
+// 	}
+// }
+
 type CompanyQuotationInfo struct {
 	ID          int    `json:"id"`
 	Company     string `json:"company"`
@@ -70,11 +78,11 @@ type Quotation struct {
 	ContactName        string
 	ContactEmail       string
 	ContactPhoneNumber string
-	TotalPrice         string
-	Discount           string
-	PriceAfterDiscount string
-	VAT                string
-	NetTotalPrice      string
+	TotalPrice         float64
+	Discount           float64
+	PriceAfterDiscount float64
+	VAT                float64
+	NetTotalPrice      float64
 	TotalPriceThai     string
 	ProjectName        string
 	QuotationDate      time.Time
