@@ -11,12 +11,12 @@
         {
             "orderCourse": "ค่าฝึกอบรม Software Testing in Action จำนวน 3 วัน วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561",
             "amount": 1,
-            "pricePerUnit": "100,000.00",
-            "price": "100,000.00"
+            "pricePerUnit": 100000.00,
+            "price": 100000.00
         }
     ],
     "payment":{
-    	"discount":"0.00"
+    	"discount":0.00
     },
     "includeVAT": false
 }

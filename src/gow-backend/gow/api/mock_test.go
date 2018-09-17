@@ -56,7 +56,11 @@ func (m mockCompanyService) GetCompanyByTaxID(string) (model.CompanyInfo, error)
 type mockQuotationService struct {
 }
 
-func (m mockQuotationService) CreateQuotation(model.QuotationForm) (model.QuotationInfo, error) {
+func (m mockQuotationService) CreateQuotation(model.QuotationForm) (int64, error) {
+	return int64(1), nil
+}
+
+func (m mockQuotationService) GetQuotationByQuotationID(int64) (model.QuotationInfo, error) {
 	readFlie, _ := ioutil.ReadFile("quotationInfo.json")
 	var quotationInfo model.QuotationInfo
 	json.Unmarshal(readFlie, &quotationInfo)

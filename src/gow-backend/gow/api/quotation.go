@@ -19,10 +19,18 @@ func (quotationAPI QuotationAPI) CreateQuotationHandler(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, err)
 		return
 	}
-	quotationInfo, err := quotationAPI.QuotationService.CreateQuotation(quotationForm)
+	quotationID, err := quotationAPI.QuotationService.CreateQuotation(quotationForm)
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, err)
+		return
+	}
+	quotationInfo, err := quotationAPI.QuotationService.GetQuotationByQuotationID(quotationID)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, err)
 		return
 	}
 	context.JSON(http.StatusOK, quotationInfo)
+}
+
+func (quotationAPI QuotationAPI) GetQuotationHandler(context *gin.Context) {
 }
