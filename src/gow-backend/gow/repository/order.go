@@ -3,9 +3,6 @@ package repository
 import (
 	"database/sql"
 	"gow/model"
-	"gow/stringutil"
-	"strconv"
-	"strings"
 	"time"
 )
 
@@ -33,8 +30,8 @@ func (orderRepository OrderRepositoryMySQL) InsertOrder(quotationForm model.Quot
 	for _, order := range quotationForm.Orders {
 		_, err = statementInsert.Exec(
 			order.Amount,
-			strings.Replace(order.PricePerUnit, ",", "", -1),
-			strings.Replace(order.Price, ",", "", -1),
+			order.PricePerUnit,
+			order.Price,
 			order.OrderCourse,
 			quotationID,
 			time.Now(),
@@ -64,10 +61,6 @@ func (orderRepository OrderRepositoryMySQL) GetByQuotationID(quotationId int) ([
 			&order.Price,
 			&order.OrderCourse,
 		)
-		pricePerUnit, _ := strconv.ParseFloat(order.PricePerUnit, 64)
-		price, _ := strconv.ParseFloat(order.Price, 64)
-		order.PricePerUnit = stringutil.AddComma(pricePerUnit)
-		order.Price = stringutil.AddComma(price)
 		orders = append(orders, order)
 	}
 	return orders, nil
