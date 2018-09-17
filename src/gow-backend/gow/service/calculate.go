@@ -3,8 +3,6 @@ package service
 import (
 	"fmt"
 	"gow/model"
-	"gow/stringutil"
-	"strconv"
 	"strings"
 )
 
@@ -83,13 +81,8 @@ func CalculateNetTotalPrice(totalPrice, vatFee float64) float64 {
 func CalculateOrdersPrice(orders *[]model.Order) (float64, error) {
 	var totalPrice float64
 	for index, order := range *orders {
-		priceWithoutComma := strings.Replace(order.PricePerUnit, ",", "", -1)
-		pricePerUnit, err := strconv.ParseFloat(priceWithoutComma, 64)
-		if err != nil {
-			return 0.00, err
-		}
-		price := CalculatePrice(order.Amount, pricePerUnit)
-		(*orders)[index].Price = stringutil.AddComma(price)
+		price := CalculatePrice(order.Amount, order.PricePerUnit)
+		(*orders)[index].Price = price
 		totalPrice += price
 	}
 	return totalPrice, nil
