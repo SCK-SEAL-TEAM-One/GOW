@@ -78,16 +78,23 @@ func (m MockCustomerRepository) GetAll() ([]model.CustomerInfo, error) {
 		nil
 }
 
-type mockQuotationRepository struct{}
+type mockQuotationRepository struct {
+	QuotationNumber string
+	QuotationForm   model.QuotationForm
+	Vat             float64
+}
 
-func (mock mockQuotationRepository) InsertQuotation(model.QuotationForm, model.Payment, float64) (int64, error) {
+func (mock *mockQuotationRepository) InsertQuotation(quotationForm model.QuotationForm, quotationNumber string, vat float64) (int64, error) {
+	mock.QuotationNumber = quotationNumber
+	mock.QuotationForm = quotationForm
+	mock.Vat = vat
 	return int64(1), nil
 }
 
 func (mock mockQuotationRepository) GetQuotationByID(int64) (model.Quotation, error) {
 	return model.Quotation{
 		QuotationID:        1,
-		QuotationNumber:    "QT201809-000001",
+		QuotationNumber:    "QT256104-000002",
 		ContactName:        "Nopparat Slisatkorn",
 		ContactEmail:       "nopparat.slisatkorn@krungsri.com",
 		ContactPhoneNumber: "",
@@ -98,12 +105,12 @@ func (mock mockQuotationRepository) GetQuotationByID(int64) (model.Quotation, er
 func (mock mockQuotationRepository) GetByQuotationNumber(string) (model.Quotation, error) {
 	return model.Quotation{
 		QuotationID:        1,
-		QuotationNumber:    "QT201809-000001",
-		TotalPrice:         "100,000.00",
-		Discount:           "0.00",
-		PriceAfterDiscount: "100,000.00",
-		VAT:                "7,000.00",
-		NetTotalPrice:      "107,000.00",
+		QuotationNumber:    "QT256104-101002",
+		TotalPrice:         100000.00,
+		Discount:           0.00,
+		PriceAfterDiscount: 100000.00,
+		VAT:                7000.00,
+		NetTotalPrice:      107000.00,
 		TotalPriceThai:     "หนึ่งแสนเจ็ดพันบาทถ้วน",
 		ContactName:        "Nopparat Slisatkorn",
 		ContactEmail:       "nopparat.slisatkorn@krungsri.com",
@@ -113,19 +120,23 @@ func (mock mockQuotationRepository) GetByQuotationNumber(string) (model.Quotatio
 	}, nil
 }
 
-type MockOrderRepository struct{}
+func (mock mockQuotationRepository) GetNewQuotationNumber() (int, error) {
+	return 2, nil
+}
 
-func (mock MockOrderRepository) InsertOrder(model.QuotationForm, int64) (bool, error) {
+type mockOrderRepository struct{}
+
+func (mock mockOrderRepository) InsertOrder(model.QuotationForm, int64) (bool, error) {
 	return true, nil
 }
 
-func (mock MockOrderRepository) GetByQuotationID(int) ([]model.Order, error) {
+func (mock mockOrderRepository) GetByQuotationID(int) ([]model.Order, error) {
 	return []model.Order{
 		{
 			OrderCourse:  "ค่าฝึกอบรม Software Testing in Action จำนวน 3 วัน วันพุธที่ 20 - วันศุกร์ที่ 22 มิถุนายน พ.ศ.2561",
 			Amount:       1,
-			PricePerUnit: "100,000.00",
-			Price:        "100,000.00",
+			PricePerUnit: 100000.00,
+			Price:        100000.00,
 		},
 	}, nil
 }
@@ -181,11 +192,11 @@ func (m mockCompanyService) ListCompanies() ([]model.CompanyInfo, error) {
 
 func (m mockCompanyService) GetCompanyByTaxID(string) (model.CompanyInfo, error) {
 	return model.CompanyInfo{
-		ID:          3,
-		Company:     "บริษัท ชู ฮา ริ จำกัด",
+		ID:          1,
+		Company:     "บริษัท สยามชำนาญกิจ จำกัด",
 		Branch:      "สำนักงานใหญ่",
-		Address:     "เลขที่ 3 อาคารพร้อมพันธ์ุ 3 ชั้น 10 ห้อง 1002 ซอยลาดพร้าม 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร 10900",
-		TaxID:       "0105561001221",
-		PhoneNumber: "+66979575936",
+		Address:     "เลขที่ 3 อาคารพร้อมพันธุ์ 3 ชั้น 10 ห้อง 1001 ซอยลาดพร้าว 3 ถนนลาดพร้าว แขวงจอมพล เขตจตุจักร กรุงเทพมหานคร",
+		TaxID:       "0105556042151",
+		PhoneNumber: "+66979515936",
 	}, nil
 }
