@@ -31,7 +31,7 @@ func (orderRepository OrderRepositoryMySQL) InsertOrder(quotationForm model.Quot
 		_, err = statementInsert.Exec(
 			order.Amount,
 			order.PricePerUnit,
-			order.Price,
+			order.GetPrice(),
 			order.OrderCourse,
 			quotationID,
 			time.Now(),

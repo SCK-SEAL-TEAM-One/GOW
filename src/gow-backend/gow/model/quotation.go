@@ -17,6 +17,10 @@ type Order struct {
 	updatedTime  time.Time
 }
 
+func (order Order) GetPrice() float64 {
+	return float64(order.Amount) * order.PricePerUnit
+}
+
 type Payment struct {
 	TotalPrice         float64 `json:"totalPrice"`
 	Discount           float64 `json:"discount"`
@@ -36,12 +40,21 @@ type QuotationForm struct {
 	Payment       Payment `json:"payment"`
 }
 
-// func (quotationForm QuotationForm) GetTotalPrice() float64 {
-// 	var totalPrice float64
-// 	for _, order := range quotationForm.Orders {
-// 		totalPrice += order.Amount * order.PricePerUnit
-// 	}
-// }
+func (quotationForm QuotationForm) GetTotalPrice() float64 {
+	var totalPrice float64
+	for _, order := range quotationForm.Orders {
+		totalPrice += order.GetPrice()
+	}
+	return totalPrice
+}
+
+func (quotationForm QuotationForm) GetPriceAfterDiscount() float64 {
+	return quotationForm.GetTotalPrice() - quotationForm.Payment.Discount
+}
+
+func (quotationForm QuotationForm) GetVATFee() float64 {
+	return 0.00
+}
 
 type CompanyQuotationInfo struct {
 	ID          int    `json:"id"`

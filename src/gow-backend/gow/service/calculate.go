@@ -80,10 +80,8 @@ func CalculateNetTotalPrice(totalPrice, vatFee float64) float64 {
 
 func CalculateOrdersPrice(orders *[]model.Order) (float64, error) {
 	var totalPrice float64
-	for index, order := range *orders {
-		price := CalculatePrice(order.Amount, order.PricePerUnit)
-		(*orders)[index].Price = price
-		totalPrice += price
+	for _, order := range *orders {
+		totalPrice += order.GetPrice()
 	}
 	return totalPrice, nil
 }
