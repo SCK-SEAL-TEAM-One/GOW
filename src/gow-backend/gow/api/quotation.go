@@ -33,4 +33,11 @@ func (quotationAPI QuotationAPI) CreateQuotationHandler(context *gin.Context) {
 }
 
 func (quotationAPI QuotationAPI) GetQuotationHandler(context *gin.Context) {
+	quotationNumber := context.Param("quotationNumber")
+	quotationInfo, err := quotationAPI.QuotationService.GetQuotationByQuotationNumber(quotationNumber)
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, err)
+		return
+	}
+	context.JSON(http.StatusOK, quotationInfo)
 }
