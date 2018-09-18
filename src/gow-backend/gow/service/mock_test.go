@@ -78,13 +78,13 @@ func (m MockCustomerRepository) GetAll() ([]model.CustomerInfo, error) {
 		nil
 }
 
-type MockQuotationRepository struct{}
+type mockQuotationRepository struct{}
 
-func (mock MockQuotationRepository) InsertQuotation(model.QuotationForm, model.Payment, float64) (int64, error) {
+func (mock mockQuotationRepository) InsertQuotation(model.QuotationForm, model.Payment, float64) (int64, error) {
 	return int64(1), nil
 }
 
-func (mock MockQuotationRepository) GetQuotationByID(int64) (model.Quotation, error) {
+func (mock mockQuotationRepository) GetQuotationByID(int64) (model.Quotation, error) {
 	return model.Quotation{
 		QuotationID:        1,
 		QuotationNumber:    "QT256104-101002",
@@ -95,7 +95,7 @@ func (mock MockQuotationRepository) GetQuotationByID(int64) (model.Quotation, er
 		VatIncluded:        false,
 	}, nil
 }
-func (mock MockQuotationRepository) GetByQuotationNumber(string) (model.Quotation, error) {
+func (mock mockQuotationRepository) GetByQuotationNumber(string) (model.Quotation, error) {
 	return model.Quotation{
 		QuotationID:        1,
 		QuotationNumber:    "QT256104-101002",

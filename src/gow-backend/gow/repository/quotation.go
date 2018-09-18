@@ -7,6 +7,7 @@ import (
 )
 
 type QuotationRepository interface {
+	GetQuotationByID(int64) (model.Quotation, error)
 	InsertQuotation(model.QuotationForm, model.Payment, string, float64) (int64, error)
 }
 type QuotationRepositoryMySQL struct {
