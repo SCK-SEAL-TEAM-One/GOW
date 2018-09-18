@@ -87,7 +87,7 @@ func (mock mockQuotationRepository) InsertQuotation(model.QuotationForm, model.P
 func (mock mockQuotationRepository) GetQuotationByID(int64) (model.Quotation, error) {
 	return model.Quotation{
 		QuotationID:        1,
-		QuotationNumber:    "QT201809-000001",
+		QuotationNumber:    "QT256104-101002",
 		ContactName:        "Nopparat Slisatkorn",
 		ContactEmail:       "nopparat.slisatkorn@krungsri.com",
 		ContactPhoneNumber: "",
@@ -98,7 +98,7 @@ func (mock mockQuotationRepository) GetQuotationByID(int64) (model.Quotation, er
 func (mock mockQuotationRepository) GetByQuotationNumber(string) (model.Quotation, error) {
 	return model.Quotation{
 		QuotationID:        1,
-		QuotationNumber:    "QT201809-000001",
+		QuotationNumber:    "QT256104-101002",
 		TotalPrice:         "100,000.00",
 		Discount:           "0.00",
 		PriceAfterDiscount: "100,000.00",
