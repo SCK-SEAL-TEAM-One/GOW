@@ -9,6 +9,7 @@ import (
 type QuotationRepository interface {
 	GetQuotationByID(int64) (model.Quotation, error)
 	InsertQuotation(model.QuotationForm, model.Payment, string, float64) (int64, error)
+	GetByQuotationNumber(string) (model.Quotation, error)
 }
 type QuotationRepositoryMySQL struct {
 	DBConnection *sql.DB
@@ -74,6 +75,35 @@ func (quotationRepository QuotationRepositoryMySQL) GetByQuotationNumber(quotati
 		total_price,discount_price,price_after_discount,vat,net_total_price,total_price_thai,
 		project_name,quotation_date,vat_rate,vat_included,created_time,updated_time FROM quotation WHERE quotation_number = ?`
 	row := quotationRepository.DBConnection.QueryRow(statementQuery, quotationNumber)
+	err := row.Scan(
+		&quotation.QuotationID,
+		&quotation.QuotationNumber,
+		&quotation.CustomerTaxID,
+		&quotation.CompanyTaxID,
+		&quotation.ContactName,
+		&quotation.ContactEmail,
+		&quotation.ContactPhoneNumber,
+		&quotation.TotalPrice,
+		&quotation.Discount,
+		&quotation.PriceAfterDiscount,
+		&quotation.VAT,
+		&quotation.NetTotalPrice,
+		&quotation.TotalPriceThai,
+		&quotation.ProjectName,
+		&quotation.QuotationDate,
+		&quotation.VatRate,
+		&quotation.VatIncluded,
+		&quotation.CreatedTime,
+		&quotation.UpdatedTime,
+	)
+	return quotation, err
+}
+func (quotationRepository QuotationRepositoryMySQL) GetQuotationByID(quotationID int64) (model.Quotation, error) {
+	var quotation model.Quotation
+	statementQuery := `SELECT quotation_id, quotation_number, customer_taxid, company_taxid, contact_name, contact_email, contact_phoneNumber,
+		total_price,discount_price,price_after_discount,vat,net_total_price,total_price_thai,
+		project_name,quotation_date,vat_rate,vat_included,created_time,updated_time FROM quotation WHERE quotation_id = ?`
+	row := quotationRepository.DBConnection.QueryRow(statementQuery, quotationID)
 	err := row.Scan(
 		&quotation.QuotationID,
 		&quotation.QuotationNumber,

@@ -87,3 +87,35 @@ func Test_GetQuotationByQuotationNumber_Input_QuotationNumber_QT256104_101002_Sh
 		t.Errorf("expect %v \nbut it got\n %v", expectedQuotation.QuotationID, quotation.QuotationID)
 	}
 }
+func Test_GetQuotationByID_Input_QuotationID_1_Should_Be_QuotationID_1(t *testing.T) {
+	url := "root:sckshuhari@tcp(localhost:3306)/GOW?parseTime=true"
+	db, err := sql.Open("mysql", url)
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	err = db.Ping()
+	if err != nil {
+		panic(err.Error())
+	}
+
+	expectedQuotation := model.Quotation{
+		QuotationID:     1,
+		QuotationNumber: "QT256104-101002",
+	}
+
+	quotationID := int64(1)
+	quotationRepository := QuotationRepositoryMySQL{
+		DBConnection: db,
+	}
+
+	quotation, _ := quotationRepository.GetQuotationByID(quotationID)
+
+	if expectedQuotation.QuotationID != quotation.QuotationID {
+		t.Errorf("expect %v \nbut it got\n %v", expectedQuotation.QuotationID, quotation.QuotationID)
+	}
+	if expectedQuotation.QuotationNumber != quotation.QuotationNumber {
+		t.Errorf("expect %v \nbut it got\n %v", expectedQuotation.QuotationNumber, quotation.QuotationNumber)
+	}
+}
