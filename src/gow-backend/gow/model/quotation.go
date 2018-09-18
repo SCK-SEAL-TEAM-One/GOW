@@ -1,8 +1,6 @@
 package model
 
-import (
-	"time"
-)
+import "time"
 
 type Contact struct {
 	Name        string `json:"name"`
@@ -19,16 +17,15 @@ type Order struct {
 	updatedTime  time.Time
 }
 
-type QuotationInfo struct {
-	Company         CompanyQuotationInfo  `json:"company"`
-	Customer        CustomerQuotationInfo `json:"customer"`
-	QuotationNumber string                `json:"quotationNumber"`
-	Contact         Contact               `json:"contact"`
-	ProjectName     string                `json:"projectName"`
-	Orders          []Order               `json:"orders"`
-	Payment         Payment               `json:"payment"`
-	IncludeVAT      bool                  `json:"includeVAT"`
+type Payment struct {
+	TotalPrice         string `json:"totalPrice"`
+	Discount           string `json:"discount"`
+	PriceAfterDiscount string `json:"priceAfterDiscount"`
+	VAT                string `json:"vat"`
+	NetTotalPrice      string `json:"netTotalPrice"`
+	TotalPriceThai     string `json:"totalPriceThai"`
 }
+
 type QuotationForm struct {
 	CompanyTaxID  string  `json:"companyTaxId"`
 	CustomerTaxID string  `json:"customerTaxId"`
@@ -38,7 +35,6 @@ type QuotationForm struct {
 	IncludeVAT    bool    `json:"includeVAT"`
 	Payment       Payment `json:"payment"`
 }
-
 type CompanyQuotationInfo struct {
 	ID          int    `json:"id"`
 	Company     string `json:"company"`
@@ -55,13 +51,15 @@ type CustomerQuotationInfo struct {
 	TaxID   string `json:"taxid"`
 }
 
-type Payment struct {
-	TotalPrice         string `json:"totalPrice"`
-	Discount           string `json:"discount"`
-	PriceAfterDiscount string `json:"priceAfterDiscount"`
-	VAT                string `json:"vat"`
-	NetTotalPrice      string `json:"netTotalPrice"`
-	TotalPriceThai     string `json:"totalPriceThai"`
+type QuotationInfo struct {
+	Company         CompanyQuotationInfo  `json:"company"`
+	Customer        CustomerQuotationInfo `json:"customer"`
+	QuotationNumber string                `json:"quotationNumber"`
+	Contact         Contact               `json:"contact"`
+	ProjectName     string                `json:"projectName"`
+	Orders          []Order               `json:"orders"`
+	Payment         Payment               `json:"payment"`
+	IncludeVAT      bool                  `json:"includeVAT"`
 }
 
 type Quotation struct {
