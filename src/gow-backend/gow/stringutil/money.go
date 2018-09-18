@@ -1,31 +1,14 @@
-package service
+package stringutil
 
 import (
 	"fmt"
-	"gow/model"
 	"strings"
 )
 
 const (
-	InterestRate = 100
-	IntegerUnit  = 0
-	DecimalUnit  = 1
+	IntegerUnit = 0
+	DecimalUnit = 1
 )
-
-func CalculatePrice(amount int, pricePerUnit float64) float64 {
-	price := float64(amount) * pricePerUnit
-	return price
-}
-
-func CalculateDiscount(price, discount float64) float64 {
-	priceAfterDiscount := price - discount
-	return priceAfterDiscount
-}
-
-func CalculateVat(price, vatRate float64) float64 {
-	vat := (price * vatRate) / InterestRate
-	return vat
-}
 
 func ConvertMoneyToThaiCharactor(number float64) string {
 	numbrtString := fmt.Sprintf("%.2f", number)
@@ -72,16 +55,4 @@ func ConvertNumberToThaiCharactor(numberString string) string {
 		lengthNumberInteger--
 	}
 	return thaiCharactorInteger
-}
-
-func CalculateNetTotalPrice(totalPrice, vatFee float64) float64 {
-	return totalPrice + vatFee
-}
-
-func CalculateOrdersPrice(orders *[]model.Order) (float64, error) {
-	var totalPrice float64
-	for _, order := range *orders {
-		totalPrice += order.GetPrice()
-	}
-	return totalPrice, nil
 }

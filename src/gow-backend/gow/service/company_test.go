@@ -61,17 +61,6 @@ func Test_ListCompanies_Should_Be_CompaniesInfo(t *testing.T) {
 	}
 }
 
-func Test_ConvertMoneyToThaiCharactor_Input_100000_Should_Be_One_Hundred_Thousand_Baht(t *testing.T) {
-	expectedNumber := "หนึ่งแสนบาทถ้วน"
-	number := 100000.00
-
-	actual := ConvertMoneyToThaiCharactor(number)
-
-	if expectedNumber != actual {
-		t.Errorf("expect %s but it got %s", expectedNumber, actual)
-	}
-}
-
 func Test_GetCompanyByTaxID_Input_ID_2_Should_Be_CompanyInfo_Aycap(t *testing.T) {
 	companyService := CompanyServiceMySQL{
 		CompanyRepository: &MockCompanyRepository{},

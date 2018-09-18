@@ -32,14 +32,6 @@ func Test_InsertQuotation_Input_QuotationForm_And_Payment_And_QuotationNumber_An
 		ProjectName: "โครงการ 3 Days Software Testing in Action Workshop",
 		IncludeVAT:  false,
 	}
-	payment := model.Payment{
-		TotalPrice:         "100,000.00",
-		Discount:           "0.00",
-		PriceAfterDiscount: "100,000.00",
-		VAT:                "7,000.00",
-		NetTotalPrice:      "107,000.00",
-		TotalPriceThai:     "หนึ่งแสนเจ็ดพันบาทถ้วน",
-	}
 	vatRate := 7.00
 	quotationNumber := "QT256104-101002"
 
@@ -47,7 +39,7 @@ func Test_InsertQuotation_Input_QuotationForm_And_Payment_And_QuotationNumber_An
 		DBConnection: db,
 	}
 
-	quotationID, err := quotationRepository.InsertQuotation(quotationForm, payment, quotationNumber, vatRate)
+	quotationID, err := quotationRepository.InsertQuotation(quotationForm, quotationNumber, vatRate)
 	if err != nil {
 		t.Errorf("%s", err)
 	}

@@ -5,6 +5,10 @@ import (
 	"time"
 )
 
+const (
+	InterestRate = 100.00
+)
+
 type Contact struct {
 	Name        string `json:"name"`
 	Email       string `json:"email"`
@@ -56,7 +60,7 @@ func (quotationForm QuotationForm) GetPriceAfterDiscount() float64 {
 }
 
 func (quotationForm QuotationForm) GetVATFee() float64 {
-	return quotationForm.GetPriceAfterDiscount() * quotationForm.VATRate / 100.00
+	return quotationForm.GetPriceAfterDiscount() * quotationForm.VATRate / InterestRate
 }
 
 func (quotationForm QuotationForm) GetNetTotalPrice() float64 {
