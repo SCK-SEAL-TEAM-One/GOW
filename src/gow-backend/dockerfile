@@ -1,0 +1,10 @@
+FROM golang:1.11.0-stretch as builder
+COPY ./gow /app/gow
+WORKDIR /app/gow
+RUN CGO_ENABLED=0 GOOS=linux go build  -o app
+
+FROM scratch
+WORKDIR /root/
+ADD ./configs /
+COPY --from=builder /app/gow .
+CMD ["./gow"]
