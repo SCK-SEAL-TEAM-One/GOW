@@ -1,6 +1,9 @@
 package model
 
-import "time"
+import (
+	"gow/stringutil"
+	"time"
+)
 
 type Contact struct {
 	Name        string `json:"name"`
@@ -29,7 +32,6 @@ type Payment struct {
 	NetTotalPrice      float64 `json:"netTotalPrice"`
 	TotalPriceThai     string  `json:"totalPriceThai"`
 }
-
 type QuotationForm struct {
 	CompanyTaxID  string  `json:"companyTaxId"`
 	CustomerTaxID string  `json:"customerTaxId"`
@@ -38,6 +40,7 @@ type QuotationForm struct {
 	Orders        []Order `json:"orders"`
 	IncludeVAT    bool    `json:"includeVAT"`
 	Payment       Payment `json:"payment"`
+	VATRate       float64 `json:"vatRate"`
 }
 
 func (quotationForm QuotationForm) GetTotalPrice() float64 {
@@ -53,7 +56,15 @@ func (quotationForm QuotationForm) GetPriceAfterDiscount() float64 {
 }
 
 func (quotationForm QuotationForm) GetVATFee() float64 {
-	return 0.00
+	return quotationForm.GetPriceAfterDiscount() * quotationForm.VATRate / 100.00
+}
+
+func (quotationForm QuotationForm) GetNetTotalPrice() float64 {
+	return quotationForm.GetPriceAfterDiscount() + quotationForm.GetVATFee()
+}
+
+func (quotationForm QuotationForm) GetTotalPriceThai() string {
+	return stringutil.ConvertMoneyToThaiCharactor(quotationForm.GetNetTotalPrice())
 }
 
 type CompanyQuotationInfo struct {
