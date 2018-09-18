@@ -120,7 +120,7 @@ func (mock mockQuotationRepository) GetByQuotationNumber(string) (model.Quotatio
 	}, nil
 }
 
-func (mock mockQuotationRepository) GetNewQuotationNumber() (int, error) {
+func (mock mockQuotationRepository) GetNewQuotationNumber(year int, month int) (int, error) {
 	return 2, nil
 }
 

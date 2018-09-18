@@ -31,10 +31,6 @@ func NewQuotationServiceMySQL(quotationRepository repository.QuotationRepository
 }
 
 func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm model.QuotationForm) (int64, error) {
-	// # Step 1 get quotation number
-	// # Step 2 create quotation
-	// # Step 3 create orders
-	// # Step 4 get quotation detail
 	quotationNumber := quotationService.GenerateQuotationNumber()
 
 	quotationID, err := quotationService.QuotationRepository.InsertQuotation(quotationForm, quotationNumber, vat)
@@ -51,10 +47,18 @@ func (quotationService QuotationServiceMySQL) CreateQuotation(quotationForm mode
 }
 
 func (quotationService QuotationServiceMySQL) GenerateQuotationNumber() string {
-	newQuotationNumber, _ := quotationService.QuotationRepository.GetNewQuotationNumber()
 	currentTime := quotationService.GetCurrentTime()
 	yearInBuddistEra := currentTime.Year() + buddistEra
 	month := currentTime.Month()
+	newQuotationNumber, _ := quotationService.QuotationRepository.GetNewQuotationNumber(currentTime.Year(), int(month))
 	quationNumber := fmt.Sprintf("QT%d%02d-101%03d", yearInBuddistEra, month, newQuotationNumber)
 	return quationNumber
+}
+
+func (quotationService QuotationServiceMySQL) GetQuotationByQuotationNumber(string) (model.QuotationInfo, error) {
+
+	return model.QuotationInfo{}, nil
+}
+func (quotationService QuotationServiceMySQL) GetQuotationByQuotationID(int64) (model.QuotationInfo, error) {
+	return model.QuotationInfo{}, nil
 }

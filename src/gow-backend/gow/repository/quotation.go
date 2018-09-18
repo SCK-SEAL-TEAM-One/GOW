@@ -9,7 +9,7 @@ import (
 type QuotationRepository interface {
 	InsertQuotation(model.QuotationForm, string, float64) (int64, error)
 	GetQuotationByID(int64) (model.Quotation, error)
-	GetNewQuotationNumber() (int, error)
+	GetNewQuotationNumber(year int, month int) (int, error)
 	GetByQuotationNumber(string) (model.Quotation, error)
 }
 
@@ -128,4 +128,12 @@ func (quotationRepository QuotationRepositoryMySQL) GetQuotationByID(quotationID
 		&quotation.UpdatedTime,
 	)
 	return quotation, err
+}
+
+func (quotationRepository QuotationRepositoryMySQL) GetNewQuotationNumber(year int, month int) (int, error) {
+	var quatationNumber int
+	statementQuery := `SELECT COUNT(*) FROM quotation WHERE YEAR(created_time) = ? AND MONTH(created_time) = ?`
+	row := quotationRepository.DBConnection.QueryRow(statementQuery, year, month)
+	err := row.Scan(&quatationNumber)
+	return quatationNumber + 1, err
 }
